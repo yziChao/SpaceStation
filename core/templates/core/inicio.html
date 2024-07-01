@@ -9,7 +9,7 @@
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="{% static 'core/img/7911.jpg' %}" class="d-block w-100" alt="" sizes="">
+          <img src="{% static 'core/img/7911.jpg' %}" class="d-block w-100" alt="">
 
         </div>
         <div class="carousel-item">
@@ -17,8 +17,7 @@
           
         </div>
         <div class="carousel-item">
-          <img src="{% static 'core/img/gow.jpg' %}" class="d-block w-100" alt="..." height="100%" large="100px">
-
+          <img src="{% static 'core/img/gow.jpg' %}" class="d-block w-100" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -29,42 +28,32 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-
     </div>
   </section>
 </main>
 
-  {% if productos %}
-  
-    <div class="container-fluid">
-      <div class="row">
-        {% for producto in productos %}
-
-          <div class="card col-sm-12 col-md-6 col-lg-3 col-xl-2 border border-1 m-2 pt-3 pb-4" style="width: 15.2rem;">
-
-            <div class="instrucciones-para-el-alumno">
-              INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-                - Pone aquí tu ficha de producto <br>
-                - Puedes usar los campos sugeridos más abajo <br>
-            </div>
-
+{% if productos %}
+  <div class="container">
+    <div class="row">
+      {% for producto in productos %}
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="card border border-1 m-2 pt-3 pb-4">
             <a href="{% url 'ficha' producto.id %}" class="link-bloque">
-                {{ producto.imagen }} <br>
-                {{ producto.nombre }} <br>
-                {{ producto.html_estado|safe }} <br>
-                {{ producto.html_precio|safe }} <br>
-                {{ producto.html_stock }} <br>
+              <img src="/media/{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ producto.nombre }}</h5>
+                <p class="card-text">{{ producto.html_estado|safe }}</p>
+                <p class="card-text">{{ producto.html_precio|safe }}</p>
+                <p class="card-text">{{ producto.html_stock }}</p>
+              </div>
             </a>
           </div>
-
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
-
-  {% else %}
-
-    <h2>No se encontraron productos</h2>
-
-  {% endif %}
+  </div>
+{% else %}
+  <h2>No se encontraron productos</h2>
+{% endif %}
 
 {% endblock content %}

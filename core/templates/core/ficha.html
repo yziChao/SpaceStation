@@ -4,38 +4,30 @@
 
 {% block content %}
 
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <form method="post" id="formulario-ficha">
+                {% csrf_token %}
 
+                <div class="mb-3 text-center">
+                    <img src="{{ imagen.url }}" alt="Imagen del producto" class="img-fluid mb-3">
+                    <h5 class="card-title">{{ nombre }}</h5>
+                    <p class="card-text">{{ html_estado|safe }}</p>
+                    <p class="card-text">{{ html_precio|safe }}</p>
+                    <p class="card-text">{{ descripcion }}</p>
+                    <p class="card-text">{{ html_stock|safe }}</p>
+                </div>
 
-<div class="instrucciones-para-el-alumno">
-    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-    - PONE EL CODIGO HTML DE TU FICHA <br>
-    - USA LOS CAMPOS DE TU FICHA  <br>
-    - SI QUIERES PUEDES USAR EL LOS CAMPOS QUE SE TE ENTREGA <br>
-  </div>
-
-    <form method="post" id="formulario-ficha">
-
-        {% csrf_token %}
-
-        <div>
-        {{ imagen }} <br>
-        {{ nombre }} <br>
-        {{ html_estado|safe }}  <br>
-        {{ html_precio|safe }}  <br>
-        {{ descripcion }}  <br>
-        {{ html_stock|safe }}  <br>
+                <div class="d-flex justify-content-around mt-4">
+                    <input type="hidden" id="accion">
+                    <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px">Comprar ahora</a>
+                    <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px">Agregar al carrito</a>
+                </div>
+            </form>
         </div>
-        
-        <div>
-            <input type="hidden" id="accion">
-            <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px"> 
-                Comprar ahora 
-            </a>
-            <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px"> 
-                Agregar al carrito 
-            </a>
-        </div>
-    </form>
+    </div>
+</div>
 
 {% endblock content %}
 

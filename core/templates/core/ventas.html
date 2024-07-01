@@ -3,62 +3,61 @@
 {% load custom_filters %}
 
 {% block content %}
-    
-<div class="instrucciones-para-el-alumno">
-    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-    - Construye tu tabla de historial de ventas, pero puedes usar los campos sugeridos. <br>
-  </div>
-
-    <table id="tabla-principal" class="table table-hover">
-        <thead>
-            <tr>
-                <th> Nro boleta </th>
-                <th> Cliente </th>
-                <th> Venta </th>
-                <th> Despacho </th>
-                <th> Entrega </th>
-                <th> Subscrito </th>
-                <th> Monto total </th>
-                <th> Estado actual </th>
-                <th> Detalle </th>
-                <th> Cambiar estado </th>
-            </tr>
-        </thead> 
-        <tbody>
-            {% for boleta in historial %}
-                {% if boleta.estado == 'Anulado' %}
-                    <tr class="letra-boleta-anulada"> 
-                {% else %}
-                    <tr>
-                {% endif %}
-
-                    <td>
-                        boleta.nro_boleta <br>
-                        boleta.nom_cliente <br>
-                        boleta.fecha_venta|formatear_fecha <br>
-                        boleta.fecha_despacho|formatear_fecha <br>
-                        boleta.fecha_entrega|formatear_fecha <br>
-                        boleta.subscrito <br>
-                        boleta.total_a_pagar|formatear_dinero <br>
-                        boleta.estado <br>
-                    </td>
-
-                    <td>
-                        <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
-                    </td>
-                    <td>
-                        <span>
-                            <div class="btn-group">
-                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
-                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
-                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-primary">Despachar</a>
-                                <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-secondary">Entregar</a>
-                            </div>
-                        </span>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>       
-    </table>
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Historial de Ventas</h2>
+                    
+                    <table id="tabla-principal" class="table table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th>Nro boleta</th>
+                                <th>Cliente</th>
+                                <th>Venta</th>
+                                <th>Despacho</th>
+                                <th>Entrega</th>
+                                <th>Subscrito</th>
+                                <th>Monto total</th>
+                                <th>Estado actual</th>
+                                <th>Detalle</th>
+                                <th>Cambiar estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for boleta in historial %}
+                                {% if boleta.estado == 'Anulado' %}
+                                    <tr class="letra-boleta-anulada"> 
+                                {% else %}
+                                    <tr>
+                                {% endif %}
+                                <td>{{ boleta.nro_boleta }}</td>
+                                <td>{{ boleta.nom_cliente }}</td>
+                                <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                                <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                                <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                                <td>{{ boleta.subscrito }}</td>
+                                <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
+                                <td>{{ boleta.estado }}</td>
+                                <td>
+                                    <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
+                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
+                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-primary">Despachar</a>
+                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-secondary">Entregar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

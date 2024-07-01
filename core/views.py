@@ -331,9 +331,16 @@ def usuarios(request, accion, id):
 def bodega(request):
 
     if request.method == 'POST':
+        form = BodegaForm(request.POST)
+        if form.is_valid():
+            # Guardar el formulario y procesar la información del producto
+            producto = form.save(commit=False)
+            producto.save()
+            messages.success(request, 'Producto agregado correctamente a la bodega.')
+            return redirect('bodega')  # Redirige a la misma vista para evitar reenvíos de formulario
 
-        # CREAR: acciones para agregar productos a la bodega
-        pass
+    else:
+        form = BodegaForm()
 
     registros = Bodega.objects.all()
     lista = []
