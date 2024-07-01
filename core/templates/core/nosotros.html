@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron text-center py-5 mb-5">
+    <h1 class="display-4">Acerca de Nosotros</h1>
+    <p class="lead">Somos una empresa comprometida con nuestros clientes, ofreciendo productos de alta calidad y un excelente servicio.</p>
+  </div>
+
+  <div class="container mb-5">
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'core/img/scw2.jpeg' %}" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Tomas Rivero</h5>
+            <p class="card-text">Designer</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'core/img/scw4.jpg' %}" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Marion Granifo</h5>
+            <p class="card-text">Programmer</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'core/img/scw3.jpg' %}" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Zichao Yuan</h5>
+            <p class="card-text">Programmer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <h2>Nuestra Historia</h2>
+      <p>En nuestra empresa, nos enorgullecemos de nuestra larga historia de éxito en la industria. Desde nuestros humildes comienzos, nos hemos convertido en un líder reconocido en nuestro campo.</p>
+      <p>Estamos dedicados a seguir creciendo y mejorando, para seguir siendo la primera opción para nuestros clientes.</p>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'core/img/nfs4.jpg' %}" class="img-fluid rounded" alt="Nuestra Historia">
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <img src="{% static 'core/img/nfs3.jpg' %}" class="img-fluid rounded" alt="Nuestro Equipo">
+    </div>
+    <div class="col-md-6">
+      <h2>Nuestro Equipo</h2>
+      <p>Nuestro equipo está formado por profesionales apasionados y comprometidos que trabajan juntos para lograr el éxito de nuestra empresa y satisfacer las necesidades de nuestros clientes.</p>
+      <p>Valoramos la diversidad y la colaboración, y creemos que estas son las claves para nuestro continuo crecimiento y desarrollo.</p>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <h2>Nuestra Historia</h2>
+      <p>En nuestra empresa, nos enorgullecemos de nuestra larga historia de éxito en la industria. Desde nuestros humildes comienzos, nos hemos convertido en un líder reconocido en nuestro campo.</p>
+      <p>Estamos dedicados a seguir creciendo y mejorando, para seguir siendo la primera opción para nuestros clientes.</p>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'core/img/nfs2.jpg' %}" class="img-fluid rounded" alt="Nuestra Historia">
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+    <button onclick="redirectToIndex()" class="btn btn-secondary mb-3">Regresar a Space Station</button>
+  </div>
+</div>
+
+<script>
+  function redirectToIndex() {
+    window.location.href = "{% url 'inicio' %}";
+  }
+</script>
+
+{% endblock content %}

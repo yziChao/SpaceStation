@@ -1,0 +1,47 @@
+/* Ejemplo de CSS personalizado para el formulario y la tabla */
+.form-container {
+  padding: 20px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.form-list li {
+  margin-bottom: 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+#cuadro-imagen {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+#tabla-principal {
+  margin-top: 30px;
+}
+
+.instrucciones-para-el-alumno {
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 14px;
+}

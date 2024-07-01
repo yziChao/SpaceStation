@@ -1,0 +1,112 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <div class="container">
+        <br>
+        <h1>Boleta</h1>
+        <section class="text-center">
+            <br> 
+            <table border="2" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nro Boleta</th>
+                        <th scope="col">Fecha venta</th>
+                        <th scope="col">Fecha despacho</th>
+                        <th scope="col">Fecha entrega</th>
+                        <th scope="col">Monto total</th>
+                        <th scope="col">Estado actual</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for boleta in boletas %}
+                    <tr>
+                        <td scope="row">#{{ boleta.nro_boleta }}</td>
+                        <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                        <td>{{ boleta.monto_total|formatear_dinero }}</td>
+                        <td>{{ boleta.estado }}</td>
+                        <td><a href="{% url 'detalle_boleta' boleta.pk %}">Ver Detalle</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="container my-4">
+                <br>
+                <h2>Estado de Compra</h2>
+                <br>
+                <div class="container">
+                  <div class="row">
+                      <!-- Reservando Producto en Tienda -->
+                      <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 step-completed">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                <i class="fa-solid fa-shop"></i>
+                                            </div>
+                    
+                                            <div>
+                                                <strong>Reservando Producto en Tienda</strong>
+                                                <p>25/03/2024 00:48</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Producto Listo para Retirar -->
+                            <div class="col-md-4 step-completed">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                              <i class="fa-solid fa-truck-ramp-box"></i>
+                                            </div>
+                    
+                                            <div>
+                                                <strong>Producto Listo para Entrega</strong>
+                                                <p>25/03/2024 15:01</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Producto Retirado -->
+                            <div class="col-md-4 step-active">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </div>
+                    
+                                            <div>
+                                                <strong>Producto Entregado</strong>
+                                                <p>25/03/2024 16:42</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            
+                        </div>
+                    </div>
+        </section>
+    </div>
+
+{% endblock content %}

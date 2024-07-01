@@ -1,0 +1,44 @@
+.usuarios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Opcional: Ajusta la altura del contenedor según tu diseño */
+}
+
+.card {
+  max-width: 600px; /* Ajusta el ancho máximo del formulario */
+  width: 100%;
+  padding: 20px;
+}
+
+/* Estilos CSS para centrar los elementos <li> dentro de ul.form-list */
+ul.form-list {
+  list-style-type: none; /* Elimina los puntos de la lista si los hubiera */
+  padding: 0;
+  text-align: center; /* Centra el contenido */
+}
+
+ul.form-list li {
+  margin-bottom: 10px; /* Añade un espacio entre elementos <li> si es necesario */
+}
+
+.form-row {
+  display: inline-block; /* Muestra los elementos en línea */
+  margin-right: 10px; /* Espacio entre elementos */
+}
+
+/* Estilos CSS para el formulario de mantenimiento de usuarios */
+.form-list {
+  list-style-type: none; /* Elimina los puntos de la lista si los hubiera */
+  padding: 0;
+}
+
+.form-row {
+  margin-bottom: 15px; /* Espacio entre filas */
+}
+
+.form-row::after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="loginbody">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-sm-12 col-md-6">
+        <div class="card border-0 shadow-lg">
+          <div class="card-body">
+            <form id="form-ingreso" method="POST" enctype="multipart/form-data">
+              <h2 class="text-center mb-4">Iniciar sesión</h2>
+  
+              {% csrf_token %}
+              
+              <div class="form-group text-center">
+                <label for="id_username" class="d-block">Usuario:</label>
+                {{ form.username }}
+              </div>
+  
+              <div class="form-group text-center">
+                <label for="id_password" class="d-block">Contraseña:</label>
+                {{ form.password }}
+              </div>
+              
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="recordar_cuenta" name="recordar_cuenta">
+                <label class="form-check-label" for="recordar_cuenta">Recordar cuenta</label>
+              </div>
+  
+              <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+              </div>
+  
+              <p class="text-center mt-3">
+                ¿No tienes cuenta? <a href="{% url 'registrarme' %}">Registrarme</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'common/combobox_usuarios.html' %}
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/ingresar.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'core/css/login.css' %}"/>
+{% endblock script %}

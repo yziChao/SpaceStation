@@ -1,0 +1,183 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    
+<form id="form-ingreso" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="usuarios">
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-sm-12 col-md-8 col-lg-6">
+          <div class="card border-0 shadow-lg">
+            <div class="card-body">
+              <h2 class="text-center mb-4">Mantenedor de usuarios</h2>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    
+                    <label for="{{ form_perfil.rut.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_perfil.rut.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_perfil.rut }}
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_usuario.first_name.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_usuario.first_name.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_usuario.first_name }}
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_usuario.last_name.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_usuario.last_name.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_usuario.last_name }}
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_usuario.email.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_usuario.email.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_usuario.email }}
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_perfil.direccion.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_perfil.direccion.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_perfil.direccion }}
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_perfil.subscrito.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_perfil.subscrito.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_perfil.subscrito }}
+                      <span class="extra-text">¿Quiere suscribirse por un aporte mensual de $3000 mensual y obtener 5% en sus compras?</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="passwordInput" class="col-md-4 col-form-label text-md-right">Contraseña:</label>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="passwordInput" readonly>
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button" onclick="generarContrasena()">Generar Contraseña</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="form-group row">
+                    <label for="{{ form_perfil.imagen.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form_perfil.imagen.label }}</label>
+                    <div class="col-md-6">
+                      {{ form_perfil.imagen }}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREA DE CUADRO DE IMAGEN: Imagen de perfil -->
+  {% if form_perfil.imagen.value %}
+    <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-fluid rounded mx-auto d-block mt-3" style="max-width: 200px;">
+  {% else %}
+    <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-fluid rounded mx-auto d-block mt-3" style="max-width: 200px;">
+  {% endif %}
+
+  <!-- AREA DE BOTONES -->
+  <div class="mt-3 text-center">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'usuarios' 'crear' '0' %}" class="btn btn-primary">Nuevo</a>
+    <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();" class="btn btn-primary">Seleccionar imagen</button>  
+
+    {% if form_usuario.instance.id %}
+      <a class="btn btn-primary" href="{% url 'usuarios' 'eliminar' form_usuario.instance.id %}">Eliminar</a>
+    {% endif %}
+  </div>
+
+</form>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Usuarios Registrados</h2>
+          <div class="table-responsive">
+            <table id="tabla-principal" class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cuenta</th>
+                  <th>Tipo usuario</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Correo</th>
+                  <th>RUT</th>
+                  <th>Subscrito</th>
+                  <th>Imagen</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                  <td>{{usuario.id}}</td>
+                  <td>{{usuario.username }}</td>
+                  <td>{{usuario.perfil.tipo_usuario}}</td>
+                  <td>{{usuario.first_name}}</td>
+                  <td>{{usuario.last_name }}</td>
+                  <td>{{usuario.email }}</td>
+                  <td>{{usuario.perfil.rut}}</td>
+                  <td>{% if usuario.perfil.subscrito %} Sí {% else %} No {% endif %}</td>
+                  <td><img src="/media/{{ usuario.perfil.imagen }}" class="usuario-sm" alt=""></td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="{% url 'usuarios' 'actualizar' usuario.id %}" class="btn btn-primary btn-sm">Editar</a>
+                      <a href="{% url 'usuarios' 'eliminar' usuario.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                      <form action="{% url 'cambiar_password' %}" method="post" id="form_{{ usuario.username }}">
+                        {% csrf_token %}
+                        <input type="hidden" id="username" name="username" value="{{ usuario.username }}">
+                        <button class="btn btn-info btn-sm" id="id_generar_password" onclick="document.getElementById('form_{{ usuario.username }}').submit();">Contraseña</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} 
+
+{% endif %} 
+
+{% endcomment %}
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'core/js/usuarios.js' %}"></script>
+{% endblock script %}

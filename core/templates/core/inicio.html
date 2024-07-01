@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<main role="main">
+  <section class="text-center">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'core/img/7911.jpg' %}" class="d-block w-100" alt="" sizes="">
+
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'core/img/mk.jpg' %}" class="d-block w-100" alt="...">
+          
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'core/img/gow.jpg' %}" class="d-block w-100" alt="..." height="100%" large="100px">
+
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div>
+  </section>
+</main>
+
+  {% if productos %}
+  
+    <div class="container-fluid">
+      <div class="row">
+        {% for producto in productos %}
+
+          <div class="card col-sm-12 col-md-6 col-lg-3 col-xl-2 border border-1 m-2 pt-3 pb-4" style="width: 15.2rem;">
+
+            <div class="instrucciones-para-el-alumno">
+              INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
+                - Pone aquí tu ficha de producto <br>
+                - Puedes usar los campos sugeridos más abajo <br>
+            </div>
+
+            <a href="{% url 'ficha' producto.id %}" class="link-bloque">
+                {{ producto.imagen }} <br>
+                {{ producto.nombre }} <br>
+                {{ producto.html_estado|safe }} <br>
+                {{ producto.html_precio|safe }} <br>
+                {{ producto.html_stock }} <br>
+            </a>
+          </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+  {% else %}
+
+    <h2>No se encontraron productos</h2>
+
+  {% endif %}
+
+{% endblock content %}

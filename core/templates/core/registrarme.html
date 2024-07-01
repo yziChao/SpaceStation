@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="registro-body">
+  <form id="form" method="POST" enctype="multipart/form-data">
+    <h2 class="text-center">Registro de Clientes</h2>
+    
+    {% csrf_token %}
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- ÁREA DE IMAGEN DE PERFIL -->
+        <div class="col-sm-12 col-md-3 text-center mb-4">
+          <div class="row">
+            <!-- ÁREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil -->
+            <div class="col-sm-12" style="height: 220px">
+              <img id="cuadro-imagen" src="{% static 'core/img/Spacestation_Gaming_logo.png' %}">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Formulario de registrarme -->
+        <div class="col-sm-12 col-md-6">
+          <div class="form-container">
+            <ul class="form-list">
+              <div class="form-group">
+                {{ form_perfil.rut.label_tag }}{{ form_perfil.rut}}
+              </div>
+              <div class="form-group">
+                {{ form_usuario.first_name.label_tag }} {{ form_usuario.first_name}}
+              </div>
+              <div class="form-group">
+                {{ form_usuario.last_name.label_tag }} {{ form_usuario.last_name}}
+              </div>
+              <div class="form-group">
+                {{ form_usuario.email.label_tag }} {{ form_usuario.email}}
+              </div>
+              <div class="form-group">
+                {{ form_perfil.direccion.label_tag }} {{ form_perfil.direccion}}
+              </div>
+              <div class="form-group">
+                {{ form_perfil.subscrito.label_tag }} {{ form_perfil.subscrito}}
+                <span class="extra-text">¿Quiere suscribirse por un aporte mensual de $3000 mensual y obtener 5% en sus compras?</span>
+              </div>
+              <div class="form-group">
+                {{ form_perfil.imagen.label_tag }} {{ form_perfil.imagen}}
+              </div>
+              <div class="form-group">
+                {{ form_usuario.password1.label_tag }} {{ form_usuario.password1}}
+              </div>
+              <div class="form-group">
+                {{ form_usuario.password2.label_tag }} {{ form_usuario.password2}}
+              </div>
+            </ul>
+            <br>
+            <p class="text-center">
+              ¿Ya tienes cuenta?
+              <a href="{% url 'ingresar' %}">Iniciar Sesión</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AREA DE BOTONES -->
+    <div class="mt-2 mb-3 text-center">
+      <button type="submit" class="btn btn-primary btn-block"> Registrarme </button>
+      
+      <!-- Boton para "Limpiar formulario" (VER COMENTARIO "BOTON LIMPIAR FORMULARIO" en script.js) -->
+      <button type="reset" class="btn btn-warning btn-block" id="limpiar_formulario"> Limpiar </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/registrarme.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'core/css/register.css' %}"/>
+{% endblock script %}

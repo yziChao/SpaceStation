@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+
+
+<div class="instrucciones-para-el-alumno">
+    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
+    - PONE EL CODIGO HTML DE TU FICHA <br>
+    - USA LOS CAMPOS DE TU FICHA  <br>
+    - SI QUIERES PUEDES USAR EL LOS CAMPOS QUE SE TE ENTREGA <br>
+  </div>
+
+    <form method="post" id="formulario-ficha">
+
+        {% csrf_token %}
+
+        <div>
+        {{ imagen }} <br>
+        {{ nombre }} <br>
+        {{ html_estado|safe }}  <br>
+        {{ html_precio|safe }}  <br>
+        {{ descripcion }}  <br>
+        {{ html_stock|safe }}  <br>
+        </div>
+        
+        <div>
+            <input type="hidden" id="accion">
+            <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px"> 
+                Comprar ahora 
+            </a>
+            <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px"> 
+                Agregar al carrito 
+            </a>
+        </div>
+    </form>
+
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/ficha.js' %}"></script>
+{% endblock script %}
