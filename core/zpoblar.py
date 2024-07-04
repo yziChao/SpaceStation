@@ -88,17 +88,56 @@ def poblar_bd(test_user_email=''):
     eliminar_tablas()
 
     crear_usuario(
-        username='Spacestation',
-        tipo='Administrador', 
-        nombre='Space', 
-        apellido='Station', 
-        correo=test_user_email if test_user_email else 'space@station.cl', 
-        es_superusuario=True, 
+        username='cevans',
+        tipo='Cliente', 
+        nombre='Chris', 
+        apellido='Evans', 
+        correo=test_user_email if test_user_email else 'cevans@marvel.com', 
+        es_superusuario=False, 
         es_staff=False, 
-        rut='11.991.600-3',	
+        rut='25.747.200-0',	
         direccion='123 Main Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos', 
         subscrito=True, 
-        imagen='perfiles/eggking.png')
+        imagen='perfiles/cevans.jpg')
+
+    crear_usuario(
+        username='eolsen',
+        tipo='Cliente', 
+        nombre='Elizabeth', 
+        apellido='Olsen', 
+        correo=test_user_email if test_user_email else 'eolsen@marvel.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='12.202.357-5', 
+        direccion='Albert Street, New York, \nNew York 10001 \nEstados Unidos', 
+        subscrito=True, 
+        imagen='perfiles/eolsen.jpg')
+
+    crear_usuario(
+        username='tholland',
+        tipo='Cliente', 
+        nombre='Tom', 
+        apellido='Holland', 
+        correo=test_user_email if test_user_email else 'tholland@marvel.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='11.991.600-3', 
+        direccion='105 Apple Park Way, \nCupertino, CA 95014 \nEstados Unidos', 
+        subscrito=False, 
+        imagen='perfiles/tholland.jpg')
+
+    crear_usuario(
+        username='sjohansson',
+        tipo='Cliente', 
+        nombre='Scarlett', 
+        apellido='Johansson', 
+        correo=test_user_email if test_user_email else 'sjohansson@marvel.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='16.469.725-8', 
+        direccion='350 5th Ave, \nNew York, NY 10118 \nEstados Unidos', 
+        subscrito=False, 
+        imagen='perfiles/sjohansson.jpg')
 
     crear_usuario(
         username='cpratt',
@@ -112,19 +151,32 @@ def poblar_bd(test_user_email=''):
         direccion='10 Pine Road, Miami, \nFlorida 33101 \nEstados Unidos', 
         subscrito=False, 
         imagen='perfiles/cpratt.jpg')
+    
+    crear_usuario(
+        username='mruffalo',
+        tipo='Administrador', 
+        nombre='Mark', 
+        apellido='Ruffalo', 
+        correo=test_user_email if test_user_email else 'mruffalo@marvel.com', 
+        es_superusuario=False, 
+        es_staff=True, 
+        rut='21.708.052-5', 
+        direccion='1600 Pennsylvania Avenue NW, \nWashington, D.C. \nEstados Unidos', 
+        subscrito=False, 
+        imagen='perfiles/mruffalo.jpg')
 
     crear_usuario(
-        username='Super',
+        username='super',
         tipo='Superusuario',
-        nombre='Duoc',
-        apellido='UC',
-        correo=test_user_email if test_user_email else 'duocuc@duocuc.cl',
+        nombre='Robert',
+        apellido='Downey Jr.',
+        correo=test_user_email if test_user_email else 'rdowneyjr@marvel.com',
         es_superusuario=True,
         es_staff=True,
-        rut='25.747.200-0',
-        direccion='Padre Alonso Ovalle, Santiago, \nRegion metropolitana \nChile',
+        rut='13.029.317-4',
+        direccion='15 Oak Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos',
         subscrito=False,
-        imagen='perfiles/scw1')
+        imagen='perfiles/rdowneyjr.jpg')
     
     categorias_data = [
         { 'id': 1, 'nombre': 'Acción'},
@@ -139,35 +191,36 @@ def poblar_bd(test_user_email=''):
     print('Categorías creadas correctamente')
 
     productos_data = [
+        # Categoría "Acción" (8 juegos)
         {
             'id': 1,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'outlast',
-            'descripcion': 'Outlast es un videojuego de terror y supervivencia en primera persona desarrollado por Red Barrels. El juego gira en torno a un periodista de investigación independiente, Miles Upshur, que decide ...',
-            'precio': 30999,
+            'nombre': 'Grand Theft Auto V',
+            'descripcion': 'Grand Theft Auto V te sumerge en la soleada ciudad de Los Santos y sus alrededores, donde seguirás las historias entrelazadas de tres criminales muy diferentes mientras planean y ejecutan audaces atracos para sobrevivir en una ciudad despiadada. Disfruta de un mundo abierto enorme y detallado, con una gran variedad de misiones, actividades y desafíos, además de un modo online multijugador en constante evolución.',
+            'precio': 29990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/otlast'
+            'imagen': 'productos/000001.jpg'
         },
         {
             'id': 2,
             'categoria': Categoria.objects.get(id=1),
             'nombre': 'Red Dead Redemption 2',
             'descripcion': 'Red Dead Redemption 2 es una épica historia sobre la vida en el despiadado corazón de América. El vasto y evocador mundo del juego también proporcionará la base para una nueva experiencia multijugador online.',
-            'precio': 23990,
+            'precio': 59990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/rdr2.jpg'
+            'imagen': 'productos/000002.jpg'
         },
         {
             'id': 3,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Need For Speed',
-            'descripcion': 'Bienvenidos al condado de Redview, donde la rivalidad entre policías y pilotos callejeros nunca cesa y ambos bandos compiten en una guerra sin cuartel protagonizada por los coches más rápidos y las mejores modificaciones y tecnologías, en un entorno de mundo abierto lleno de peligros.',
-            'precio': 12999,
+            'nombre': 'Call of Duty: Modern Warfare II',
+            'descripcion': 'Call of Duty: Modern Warfare II es la secuela de Modern Warfare (2019) y la decimonovena entrega de la serie Call of Duty. La campaña de Modern Warfare II sigue a la Fuerza Operativa 141 mientras persiguen a un terrorista iraní llamado Hassan Zyani, quien adquirió un misil balístico estadounidense.',
+            'precio': 69990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
-            'imagen': 'productos/nfs.jpg'
+            'imagen': 'productos/000003.jpg'
         },
         {
             'id': 4,

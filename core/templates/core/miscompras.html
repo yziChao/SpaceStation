@@ -4,16 +4,6 @@
 
 {% block content %}
     
-    <div class="instrucciones-para-el-alumno">
-        INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-        - Puedes probar una boleta con el siguiente link<br><br>
-        &nbsp;&nbsp;&nbsp;
-        <a href="{% url 'boleta' 1 %}">Ver boleta 1</a><br><br>
-    </div>
-    
-
-
-    <!-- AREA DE TABLA: Datos de las boletas de compras del cliente (VER COMENTARIO "TABLA AVANZADA" en script.js) -->
     <table id="tabla-principal" class="table table-hover">
         <thead>
             <tr>
@@ -26,6 +16,7 @@
                 <th> Opciones </th>
             </tr>
         </thead> 
+        
         <tbody>
             {% for boleta in historial %}
                 {% if boleta.estado == 'Anulado' %}

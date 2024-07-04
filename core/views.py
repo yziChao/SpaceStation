@@ -119,7 +119,7 @@ def salir(request):
     logout(request)
     return redirect(inicio)
 
-@user_passes_test(es_usuario_anonimo)
+@user_passes_test(es_usuario_anonimo, login_url='inicio')
 def registrarme(request):
 
     if request.method == 'POST':
@@ -128,24 +128,36 @@ def registrarme(request):
         form_perfil = RegistroPerfilForm(request.POST, request.FILES)
 
         if form_usuario.is_valid() and form_perfil.is_valid():
+            email = form_usuario.cleaned_data.get('email')
+            if User.objects.filter(username=email).exists():
+                messages.error(request, 'El nombre de usuario ya está en uso. Por favor, elige otro.')
+                return render(request, 'core/registrarme.html', {
+                    'form_usuario': form_usuario,
+                    'form_perfil': form_perfil,
+                })
+
             usuario = form_usuario.save(commit=False)
+            usuario.username = email  # Usar el email como nombre de usuario
             usuario.is_staff = False
-            perfil = form_perfil.save(commit=False)
+            usuario.is_active = True  # Activar el usuario
             usuario.save()
+            
+            perfil = form_perfil.save(commit=False)
             perfil.usuario_id = usuario.id
             perfil.tipo_usuario = 'Cliente'
             perfil.save()
+            
             premium = 'y aprovechar tus descuentos especiales como cliente PREMIUM' if hasattr(perfil, 'premium') and perfil.premium else ''
             mensaje = f'Tu cuenta de usuario: "{usuario.username}" ha sido creada con éxito. ¡Ya puedes iniciar sesión {premium}!'
             messages.success(request, mensaje)
-            return redirect(ingresar)
+            return redirect('ingresar')
         else:
             messages.error(request, 'No fue posible crear tu cuenta de cliente.')
-        show_form_errors(request, [form_usuario, form_perfil])
+            show_form_errors(request, [form_usuario, form_perfil])
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
 
-        form_usuario = RegistroUsuarioForm(request=request)
+        form_usuario = RegistroUsuarioForm()
         form_perfil = RegistroPerfilForm()
 
     context = {
@@ -154,6 +166,9 @@ def registrarme(request):
     }
 
     return render(request, 'core/registrarme.html', context)
+
+
+
 
 
 @login_required
