@@ -23,13 +23,13 @@
 
 .registro-body {
   font-family: Arial, sans-serif;
-  background: url('/static/core/img/nfs3.jpg') no-repeat center center fixed;
+  background: url('/static/core/img/register.jpg') no-repeat center center fixed;
   background-size: cover;
   padding: 50px;
-  min-height: 100vh; /* Ajusta el alto mínimo del contenedor para ocupar toda la altura */
+  min-height: 100vh;
   display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -50,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+  max-width: 1200px;
   padding: 20px;
 }
 
@@ -61,16 +61,16 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   width: 100%;
-  max-width: 1200px; /* Ajusta el ancho máximo de cada card */
-  margin: 0 auto; /* Centra horizontalmente el card */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 
 .card-body {
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
-  border-radius: 10px; /* Bordes redondeados */
-  border: none; /* Sin bordes */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: -100px;
 }
 
@@ -83,8 +83,8 @@
 
 
 .card-title {
-  font-size: 1.25rem; /* Tamaño de fuente del título del card */
-  margin-bottom: 10px; /* Espacio inferior del título */
+  font-size: 1.25rem;
+  margin-bottom: 10px;
 }
 
 .form-list {
@@ -101,7 +101,7 @@
 }
 
 .form-control {
-  height: 38px; /* Ajusta la altura según tu diseño */
+  height: 38px;
 }
 
 .form-check-label {
@@ -124,10 +124,10 @@
 }
 
 .form-container {
-  background: rgba(255, 255, 255, 0.9); /* Transparent white background */
+  background: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #form {

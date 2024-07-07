@@ -1,7 +1,7 @@
 /* CSS personalizado para el formulario y la tabla */
 
 body {
-  background-image: url('/static/core/img/nsfwunboud.jpg');
+  background-image: url('/static/core/img/prodct.avif');
 }
 
 .form-container {
@@ -9,13 +9,12 @@ body {
 }
 
 .card {
-  background-color: rgba(200, 200, 200, 0.8); /* Color gris semi-transparente */
-  border: 2px solid #ccc; /* Borde sólido */
-  border-radius: 30px; /* Borde redondeado */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-  background-color: rgba(200, 200, 200, 0.8); /* Color gris semi-transparente */
-  border-radius: 10px; /* Borde redondeado */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: rgba(200, 200, 200, 0.8);
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 10px;
 }
 
 .card-body {
@@ -23,13 +22,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 20px; /* Borde redondeado para el contenido */
-  padding: 20px; /* Espaciado interno */
+  border-radius: 20px;
+  padding: 20px;
 }
 
 
 .form-group {
-  margin-bottom: 20px; /* Ajusta el margen inferior según sea necesario */
+  margin-bottom: 20px;
 }
 
 #cuadro-imagen {
@@ -40,19 +39,19 @@ body {
 
 #tabla-principal {
   margin-top: 30px;
-  width: 100%; /* Ajusta el ancho de la tabla al 100% */
+  width: 100%;
 }
 
 #tabla-principal th, #tabla-principal td {
-  text-align: center; /* Centra el contenido de las celdas */
-  vertical-align: middle; /* Alineación vertical central */
+  text-align: center;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {
   .col-md-8 {
-    max-width: 100%; /* Ajusta el ancho máximo de las columnas según sea necesario */
+    max-width: 100%;
   }
   .col-md-10 {
-    max-width: 100%; /* Ajusta el ancho máximo de las columnas según sea necesario */
+    max-width: 100%;
   }
 }

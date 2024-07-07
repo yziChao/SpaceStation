@@ -2,50 +2,46 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh; /* Opcional: Ajusta la altura del contenedor según tu diseño */
+  height: 60vh;
 }
 
 body {
-  background: url('/static/core/img/outlast.avif') no-repeat center center fixed;
-  background-size: cover; /* Ajusta la imagen para cubrir toda el área */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background: url('/static/core/img/user.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card {
-  max-width: 1200px; /* Ajusta el ancho máximo del formulario */
+  max-width: 1200px;
   width: 100%;
   padding: 10px;
-  background-color: rgba(200, 200, 200, 0.8); /* Color gris semi-transparente */
-  border-radius: 10px; /* Borde redondeado */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
-/* Estilos CSS para centrar los elementos <li> dentro de ul.form-list */
 ul.form-list {
-  list-style-type: none; /* Elimina los puntos de la lista si los hubiera */
+  list-style-type: none;
   padding: 10px;
-  text-align: center; /* Centra el contenido */
+  text-align: center;
 }
 
 ul.form-list li {
-  margin-bottom: 10px; /* Añade un espacio entre elementos <li> si es necesario */
+  margin-bottom: 10px;
 }
 
 .form-row {
-  display: inline-block; /* Muestra los elementos en línea */
-  margin-right: 10px; /* Espacio entre elementos */
+  display: inline-block;
+  margin-right: 10px;
 }
 
-/* Estilos CSS para el formulario de mantenimiento de usuarios */
 .form-list {
-  list-style-type: none; /* Elimina los puntos de la lista si los hubiera */
+  list-style-type: none;
   padding: 0;
 }
 
 .form-row {
-  margin-bottom: 15px; /* Espacio entre filas */
+  margin-bottom: 15px;
 }
 
 .form-row::after {
@@ -55,6 +51,6 @@ ul.form-list li {
 }
 
 .error-message {
-  color: red;  /* Ejemplo de estilo */
+  color: red;
   font-size: 14px;
 }

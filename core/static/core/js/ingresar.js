@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
   // Asignar placeholders para ayudar a los usuarios
-  $('#id_username').attr('placeholder', 'Ej: Space');
-  $('#id_password').attr('placeholder', 'Station');
+  $('#id_username').attr('placeholder', 'Ej: cgomezv, cevans, sjohasson');
+  $('#id_password').attr('placeholder', 'Ingresa tu contraseña actual');
 
-  $('#form-ingreso').validate({ 
+  $('#form').validate({ 
       rules: {
         'username': {
           required: true,
@@ -15,16 +15,26 @@ $(document).ready(function() {
       },
       messages: {
         'username': {
-          required: 'Debe ingresar un nombre de usuario',
+          required: 'Debe ingresar un nombre de usuario.',
         },
         'password': {
-          required: 'Debe ingresar una contraseña',
+          required: 'Debe ingresar una contraseña.',
         },
       },
       errorPlacement: function(error, element) {
         error.insertAfter(element); // Inserta el mensaje de error después del elemento
-        error.addClass('invalid-feedback'); // Aplica una clase al mensaje de error
+        error.addClass('error-message'); // Aplica una clase al mensaje de error
       },
+  });
+
+  $('#user-select').change(function() {
+    var username = $(this).val();
+    var password = 'Duoc@123';
+    if ('cevans eolsen tholland sjohansson cpratt mruffalo super'.includes(username)) {
+      password = '123';
+    };
+    $('#id_username').val(username);
+    $('#id_password').val(password);
   });
 
 });

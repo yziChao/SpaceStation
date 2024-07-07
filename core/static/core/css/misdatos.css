@@ -1,8 +1,6 @@
-/* static/core/css/misdatos.css */
-
 body {
   font-family: Arial, sans-serif;
-  background-image: url('/static/core/img/asseto.jpg');
+  background-image: url('/static/core/img/misdatos.jpeg');
   background-size: cover;
 }
 

@@ -12,7 +12,7 @@ th {
 }
 
 input, textarea, select {
-  border-color: darkgray !important; /* Cambia "red" al color deseado */
+  border-color: darkgray !important;
 }
 
 body {

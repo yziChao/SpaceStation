@@ -3,14 +3,13 @@
 }
 
 .link-bloque {
-    display: inline-block; /* Mostrar como bloque en línea */
-    text-decoration: none !important; /* Eliminar subrayado del enlace */
-    color: inherit; /* Heredar el color del texto */
+    display: inline-block; 
+    text-decoration: none !important; 
+    color: inherit; 
     text-decoration: lin;
 }
   
 .link-bloque:hover {
-    /* Estilos adicionales al pasar el mouse sobre el enlace */
     cursor: pointer;
     border: 1px solid lightblue;
 }
@@ -41,10 +40,10 @@
 }
 
 .inicio-producto-descripcion {
-    width: 200px; /* Ancho fijo para el contenedor */
-    white-space: nowrap; /* Evita que el texto se desborde */
-    overflow: hidden; /* Oculta el texto que se desborda */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) */
+    width: 200px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 #cuadro-imagen {
@@ -123,10 +122,10 @@ footer {
 }
 
 footer svg {
-    width: 1.5em; /* Tamaño de los íconos */
+    width: 1.5em;
     height: 1.5em;
-    vertical-align: middle; /* Alinea verticalmente los íconos */
-    margin: 0 5px; /* Espaciado entre los íconos */
+    vertical-align: middle; 
+    margin: 0 0px;
   }
 
 

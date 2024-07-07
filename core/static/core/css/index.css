@@ -1,14 +1,5 @@
-.titulo-mantenedor {
-  color: black;
-}
-
-.card .card-title {
-  color: black;
-}
-
 body {
-  font-family: Arial, sans-serif;
-  background-image: url('/static/core/img/1350069.jpeg');
+  background: url('/static/core/img/wallpp.webp') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -20,4 +11,3 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-

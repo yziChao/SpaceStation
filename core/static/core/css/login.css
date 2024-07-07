@@ -1,12 +1,12 @@
 .card {
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
-  border-radius: 10px; /* Bordes redondeados */
-  border: none; /* Sin bordes */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-body {
-  background: url('/static/core/img/nfs3.jpg') no-repeat center center fixed;
+  background: url('/static/core/img/login.webp') no-repeat center center fixed;
   background-size: cover;
   padding: 20px;
 }
@@ -19,20 +19,20 @@
 }
 
 .ingresar-body {
-  background-color: #f0f0f0; /* Color de fondo */
-  font-family: Arial, sans-serif; /* Fuente del texto */
-  padding: 20px; /* Espaciado interno */
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 h2 {
-  text-align: center; /* Texto centrado */
-  margin-bottom: 20px; /* Margen inferior */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-group.row {
-  margin-bottom: 15px; /* Margen inferior */
+  margin-bottom: 15px;
 }
 
 .col-form-label {
-  font-weight: bold; /* Texto en negrita para etiquetas */
+  font-weight: bold;
 }
