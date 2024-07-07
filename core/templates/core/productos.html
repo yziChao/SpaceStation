@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <div class="card border-0 shadow-lg">
         <div class="card-body">
-          <div class="text-center mb-4"> <!-- Centrar el título -->
+          <div class="text-center mb-4">
             <h2>Mantenedor de Producto</h2>
           </div>
           <div class="row">
@@ -33,6 +33,7 @@
                 <div class="form-group">
                   {{ form.descuento_oferta|as_bootstrap_field }}
                 </div>
+                <input type="file" id="id_imagen" name="imagen" style="display: none;">
                 <div class="form-group text-center">
                   <input class="btn btn-primary" type="submit" value="Guardar">
                   <a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}"> Nuevo </a>
@@ -43,17 +44,16 @@
                 </div>
               </form>
             </div>
-              <div class="col-md-6">
-                <div class="mb-3 text-center">
-                  <h4>Imagen del Producto</h4>
-                  {% if form_perfil.imagen.value %}
-                    <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail me-3"
-                      style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
-                  {% else %}
-                    <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail me-3"
-                      style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
-                  {% endif %}
-                </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <h4>Imagen del Producto</h4>
+                {% if form_perfil.imagen.value %}
+                  <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail me-3"
+                    style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                {% else %}
+                  <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail me-3"
+                    style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                {% endif %}
               </div>
             </div>
           </div>
@@ -132,13 +132,11 @@ document.getElementById('id_imagen').onchange = function (evt) {
     const reader = new FileReader();
     reader.onload = function(event) {
       document.getElementById('cuadro-imagen').src = event.target.result;
-      document.getElementById('imagen-preview-container').style.display = 'block';
     };
     reader.readAsDataURL(file);
   }
 };
 </script>
-<script src="{% static 'core/js/productos.js' %}"></script>
 <link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/productos.css' %}">
 {% endblock script %}
