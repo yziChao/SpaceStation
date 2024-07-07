@@ -5,11 +5,12 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-.loginbody {
-  background: url('/static/core/img/nfs4.jpg') no-repeat center center fixed;
+.login-body {
+  background: url('/static/core/img/nfs3.jpg') no-repeat center center fixed;
   background-size: cover;
   padding: 20px;
 }
+
 
 .card-body {
   display: flex;

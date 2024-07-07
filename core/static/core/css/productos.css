@@ -1,4 +1,4 @@
-/* Ejemplo de CSS personalizado para el formulario y la tabla */
+/* CSS personalizado para el formulario y la tabla */
 .form-container {
   padding: 20px;
 }
@@ -9,25 +9,8 @@
   align-items: center;
 }
 
-.form-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
-
-.form-list li {
-  margin-bottom: 10px;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Ajusta el margen inferior según sea necesario */
 }
 
 #cuadro-imagen {
@@ -38,10 +21,19 @@
 
 #tabla-principal {
   margin-top: 30px;
+  width: 100%; /* Ajusta el ancho de la tabla al 100% */
 }
 
-.instrucciones-para-el-alumno {
-  margin-bottom: 20px;
-  font-style: italic;
-  font-size: 14px;
+#tabla-principal th, #tabla-principal td {
+  text-align: center; /* Centra el contenido de las celdas */
+  vertical-align: middle; /* Alineación vertical central */
+}
+
+@media (min-width: 768px) {
+  .col-md-8 {
+    max-width: 100%; /* Ajusta el ancho máximo de las columnas según sea necesario */
+  }
+  .col-md-10 {
+    max-width: 100%; /* Ajusta el ancho máximo de las columnas según sea necesario */
+  }
 }

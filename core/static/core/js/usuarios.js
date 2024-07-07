@@ -24,7 +24,8 @@ $(document).ready(function() {
     required: "Este campo es requerido",
   });
 
-  $('#form').validate({ 
+  // Configuración de validación del formulario
+  $('#form-ingreso').validate({ 
       rules: {
         'username': {
           required: true,
@@ -82,15 +83,17 @@ $(document).ready(function() {
         },
       },
       errorPlacement: function(error, element) {
-        error.insertAfter(element); // Inserta el mensaje de error después del elemento
-        error.addClass('error-message'); // Aplica una clase al mensaje de error
+        // Inserta el mensaje de error después del elemento
+        error.insertAfter(element);
+        // Aplica una clase al mensaje de error
+        error.addClass('error-message');
       },
   });
 
   $('#id_generar_password').click(function() {
+    // Ejemplo de acción al hacer clic en un elemento
     $("#change_password_indicator").val("Nuevo valor del campo");
     $("#change_password_username").val("Nuevo valor del campo");
   });
 
 });
-

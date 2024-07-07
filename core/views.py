@@ -121,42 +121,29 @@ def salir(request):
 
 @user_passes_test(es_usuario_anonimo, login_url='inicio')
 def registrarme(request):
-
+    
     if request.method == 'POST':
         
         form_usuario = RegistroUsuarioForm(request.POST)
         form_perfil = RegistroPerfilForm(request.POST, request.FILES)
-
+        
         if form_usuario.is_valid() and form_perfil.is_valid():
-            email = form_usuario.cleaned_data.get('email')
-            if User.objects.filter(username=email).exists():
-                messages.error(request, 'El nombre de usuario ya está en uso. Por favor, elige otro.')
-                return render(request, 'core/registrarme.html', {
-                    'form_usuario': form_usuario,
-                    'form_perfil': form_perfil,
-                })
-
-            usuario = form_usuario.save(commit=False)
-            usuario.username = email  # Usar el email como nombre de usuario
+            usuario = form_usuario.save()
             usuario.is_staff = False
-            usuario.is_active = True  # Activar el usuario
-            usuario.save()
-            
             perfil = form_perfil.save(commit=False)
+            usuario.save()
             perfil.usuario_id = usuario.id
             perfil.tipo_usuario = 'Cliente'
             perfil.save()
-            
-            premium = 'y aprovechar tus descuentos especiales como cliente PREMIUM' if hasattr(perfil, 'premium') and perfil.premium else ''
-            mensaje = f'Tu cuenta de usuario: "{usuario.username}" ha sido creada con éxito. ¡Ya puedes iniciar sesión {premium}!'
+            # premium = ' y aprovechar tus descuentos especiales como cliente PREMIUM' if perfil.su
+            mensaje = f'Tu cuenta de usuario: "{usuario.username}" ha sido creada con éxito. ¡Ya puedes ingresar a la tienda'
             messages.success(request, mensaje)
-            return redirect('ingresar')
+            return redirect(ingresar)
         else:
-            messages.error(request, 'No fue posible crear tu cuenta de cliente.')
+            messages.error(request, f'No fue posible crear tu cuenta de cliente.')
             show_form_errors(request, [form_usuario, form_perfil])
-
-    elif request.method == 'GET':
-
+    
+    if request.method == 'GET':
         form_usuario = RegistroUsuarioForm()
         form_perfil = RegistroPerfilForm()
 
@@ -167,45 +154,35 @@ def registrarme(request):
 
     return render(request, 'core/registrarme.html', context)
 
-
-
-
-
 @login_required
 def misdatos(request):
-    # Obtener el usuario actual y sus datos de perfil
-    usuario_actual = request.user
-    perfil_usuario_actual = usuario_actual.perfil
 
     if request.method == 'POST':
-        # Si se está enviando el formulario (POST)
-        form_usuario = UsuarioForm(request.POST, instance=usuario_actual)
-        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=perfil_usuario_actual)
-
+        form_usuario = UsuarioForm(request.POST, instance=request.user)
+        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=request.user.perfil)
+        
         if form_usuario.is_valid() and form_perfil.is_valid():
-            usuario_actual = form_usuario.save()
-            perfil_actualizado = form_perfil.save(commit=False)
-            perfil_actualizado.usuario = usuario_actual
-            perfil_actualizado.save()
-
-            # Lógica opcional para definir tipo de cuenta
-            if perfil_actualizado.tipo_usuario in ['Administrador', 'Superusuario']:
-                tipo_cuenta = perfil_actualizado.tipo_usuario
+            usuario = form_usuario.save(commit=False)
+            perfil = form_perfil.save(commit=False)
+            usuario.save()
+            perfil.usuario_id = usuario.id
+            perfil.save()
+            if perfil.tipo_usuario in ['Administrador', 'Superusuario']:
+                tipo_cuenta = perfil.tipo_usuario
             else:
-                tipo_cuenta = 'CLIENTE PREMIUM' if perfil_actualizado.subscrito else 'cliente'
-
+                tipo_cuenta = 'CLIENTE PREMIUM' if perfil.subscrito else 'cliente'
             messages.success(request, f'Tu cuenta de {tipo_cuenta} ha sido actualizada con éxito.')
-            return redirect('misdatos')  # Redirige a la misma página después de guardar
+            return redirect(misdatos)
+        else:
+            show_form_errors(request, [form_usuario, form_perfil])
 
-    else:
-        # Si es una solicitud GET, mostrar los formularios con los datos actuales
-        form_usuario = UsuarioForm(instance=usuario_actual)
-        form_perfil = RegistroPerfilForm(instance=perfil_usuario_actual)
+    if request.method == 'GET':
+        form_usuario = UsuarioForm(instance=request.user)
+        form_perfil = RegistroPerfilForm(instance=request.user.perfil)
 
-    # Contexto para enviar los formularios a la plantilla
     context = {
         'form_usuario': form_usuario,
-        'form_perfil': form_perfil,
+        'form_perfil': form_perfil
     }
 
     return render(request, 'core/misdatos.html', context)
@@ -213,7 +190,7 @@ def misdatos(request):
 @login_required
 def boleta(request, nro_boleta):
     try:
-        boleta = Boleta.objects.get(numero=nro_boleta)
+        boleta = Boleta.objects.get(nro_boleta=nro_boleta)
         
         detalles = DetalleBoleta.objects.filter(boleta=boleta)
         
@@ -231,113 +208,116 @@ def boleta(request, nro_boleta):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def ventas(request):
-    
-    # CREAR: lógica para ver las ventas
+    boletas = Boleta.objects.all()
+    historial =[]
 
-    # CREAR: variable de contexto para enviar historial de ventas
-    context = { }
+    for boleta in boletas:
+        boleta_historial = {
+            'nro_boleta': boleta.nro_boleta,
+            'nom_cliente': f'{boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}',
+            'fecha_venta': boleta.fecha_venta,
+            'fecha_despacho': boleta.fecha_despacho,
+            'fecha_entrega': boleta.fecha_entrega,
+            'subscrito': 'Sí' if boleta.cliente.subscrito else 'No',
+            'total_a_pagar': boleta.total_a_pagar,
+            'estado': boleta.estado,
+        }
+        historial.append(boleta_historial)
+
+    context = {
+        'historial': historial
+    }
 
     return render(request, 'core/ventas.html', context)
 
 @user_passes_test(es_personal_autenticado_y_activo)
-def productos(request, accion, id=None):
-    if request.method == 'POST':
-        if accion == 'crear':
-            form = ProductoForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Producto creado exitosamente.')
-                return redirect('productos', accion='ver', id=0)  # Redirige a la vista de todos los productos
-            else:
-                messages.error(request, 'Error al crear el producto.')
+def productos(request, accion, id):
 
-        elif accion == 'actualizar' and id:
-            producto = get_object_or_404(Producto, id=id)
-            form = ProductoForm(request.POST, instance=producto)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Producto actualizado exitosamente.')
-                return redirect('productos', accion='ver', id=0)  # Redirige a la vista de todos los productos
-            else:
-                messages.error(request, 'Error al actualizar el producto.')
-
-        elif accion == 'eliminar' and id:
-            producto = get_object_or_404(Producto, id=id)
-            producto.delete()
-            messages.success(request, 'Producto eliminado exitosamente.')
-            return redirect('productos', accion='ver', id=0)  # Redirige a la vista de todos los productos
-
-    if request.method == 'GET':
-        if accion == 'crear':
+    if accion == 'crear':
+        if request.method == 'POST':
+            form = ProductoForm(request.POST, request.FILES)
+        else:
             form = ProductoForm()
-        elif accion == 'actualizar' and id:
-            producto = get_object_or_404(Producto, id=id)
+
+        if request.method == 'POST' and form.is_valid():
+            producto = form.save()
+            messages.success(request, f'El producto "{str(producto)}" se creó correctamente.')
+            return redirect('productos', 'actualizar', producto.id)
+        elif request.method == 'POST':
+            show_form_errors(request, [form])
+            messages.error(request, f'El producto no se pudo crear correctamente.')
+
+    elif accion == 'actualizar':
+        try:
+            producto = Producto.objects.get(id=id)
+        except Producto.DoesNotExist:
+            messages.error(request, f'El producto con id {id} no existe.')
+            return redirect('productos', 'crear', 0)
+
+        if request.method == 'POST':
+            form = ProductoForm(request.POST, request.FILES, instance=producto)
+            if form.is_valid():
+                form.save()
+                messages.success(request, f'El producto "{str(producto)}" se actualizó correctamente.')
+                return redirect('productos', 'actualizar', producto.id)
+            else:
+                show_form_errors(request, [form])
+                messages.error(request, f'El producto no se pudo actualizar correctamente.')
+        else:
             form = ProductoForm(instance=producto)
-        elif accion == 'eliminar' and id:
-            producto = get_object_or_404(Producto, id=id)
-            form = ProductoForm(instance=producto)  # Para confirmar eliminación
-        else:  # Ver todos los productos
-            form = None
 
-        productos = Producto.objects.all()
-        context = {
-            'form': form,
-            'productos': productos,
-            'accion': accion,
-            'id': id,
-        }
-        return render(request, 'core/productos.html', context)
+    elif accion == 'eliminar':
+        eliminado, mensaje = eliminar_registro(Producto, id)
+        messages.success(request, mensaje)
+        if eliminado:
+            return redirect('productos', 'crear', 0)
 
+    context = {
+        'form': form,
+        'productos': Producto.objects.all()
+    }
+
+    return render(request, 'core/productos.html', context)
 @user_passes_test(es_personal_autenticado_y_activo)
 def usuarios(request, accion, id):
+
+    usuario = User.objects.get(id=id) if int(id) > 0 else None
+    perfil = usuario.perfil if usuario else None
+
     if request.method == 'POST':
-        if accion == 'crear':
-            form_usuario = UsuarioForm(request.POST)
-            form_perfil = PerfilForm(request.POST, request.FILES)
 
-            if form_usuario.is_valid() and form_perfil.is_valid():
-                usuario = form_usuario.save(commit=False)
-                usuario.is_staff = False  # Asignar el rol adecuado
-                usuario.save()
+        form_usuario = UsuarioForm(request.POST, instance=usuario)
 
-                perfil = form_perfil.save(commit=False)
-                perfil.usuario = usuario
-                perfil.save()
+        form_perfil = PerfilForm(request.POST, request.FILES, instance=perfil)
 
-                return redirect('nombre_de_tu_vista')  # Redirigir a la vista de usuarios
-
-        if accion == 'actualizar':
-            usuario = get_object_or_404(User, id=id)
-            perfil = get_object_or_404(Perfil, usuario=usuario)
-
-            form_usuario = UsuarioForm(request.POST, instance=usuario)
-            form_perfil = PerfilForm(request.POST, request.FILES, instance=perfil)
-
-            if form_usuario.is_valid() and form_perfil.is_valid():
-                form_usuario.save()
-                form_perfil.save()
-
-                return redirect('nombre_de_tu_vista')  # Redirigir a la vista de usuarios
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            usuario = form_usuario.save(commit=False)
+            tipo_usuario = form_perfil.cleaned_data['tipo_usuario']
+            usuario.is_staff = tipo_usuario in ['Administrador', 'Superusuario']
+            perfil = form_perfil.save(commit=False)
+            usuario.save()
+            perfil.usuario_id = usuario.id
+            perfil.save()
+            messages.success(request, f'El usuario {usuario.first_name} {usuario.last_name} fue guardado exitosamente.')
+            return redirect(usuarios, 'actualizar', usuario.id)
+        else:
+            messages.error(request, f'No fue posible guardar el nuevo usuario.')
+            show_form_errors(request, [form_usuario, form_perfil])
 
     if request.method == 'GET':
-        if accion == 'eliminar':
-            usuario = get_object_or_404(User, id=id)
-            usuario.delete()
-            return redirect('nombre_de_tu_vista')  # Redirigir a la vista de usuarios
 
-        if accion == 'crear':
-            form_usuario = UsuarioForm()
-            form_perfil = PerfilForm()
+        if accion == 'eliminar':
+            eliminado, mensaje = eliminar_registro(User, id)
+            messages.success(request, mensaje)
+            return redirect(usuarios, 'crear', '0')
         else:
-            usuario = get_object_or_404(User, id=id)
-            perfil = get_object_or_404(Perfil, usuario=usuario)
             form_usuario = UsuarioForm(instance=usuario)
             form_perfil = PerfilForm(instance=perfil)
 
     context = {
         'form_usuario': form_usuario,
         'form_perfil': form_perfil,
-        'usuarios': User.objects.all(),  # O tu queryset personalizado
+        'usuarios': User.objects.all(),
     }
 
     return render(request, 'core/usuarios.html', context)
@@ -346,16 +326,16 @@ def usuarios(request, accion, id):
 def bodega(request):
 
     if request.method == 'POST':
-        form = BodegaForm(request.POST)
-        if form.is_valid():
-            # Guardar el formulario y procesar la información del producto
-            producto = form.save(commit=False)
-            producto.save()
-            messages.success(request, 'Producto agregado correctamente a la bodega.')
-            return redirect('bodega')  # Redirige a la misma vista para evitar reenvíos de formulario
 
-    else:
-        form = BodegaForm()
+        producto_id = request.POST.get('producto')
+        producto = Producto.objects.get(id=producto_id)
+        cantidad = int(request.POST.get('cantidad'))
+        for cantidad in range(1, cantidad + 1):
+            Bodega.objects.create(producto=producto)
+        if cantidad == 1:
+            messages.success(request, f'Se ha agregado 1 nuevo "{producto.nombre}" a la bodega.')
+        else:
+            messages.success(request, f'Se han agregado {cantidad} productos de "{producto.nombre}" a la bodega.')
 
     registros = Bodega.objects.all()
     lista = []
@@ -390,20 +370,37 @@ def obtener_productos(request):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def eliminar_producto_en_bodega(request, bodega_id):
-    # La vista eliminar_producto_en_bodega la usa la pagina "Administracion de bodega", 
-    # para eliminar productos que el usuario decidio sacar del inventario
 
-    # CREAR: lógica para eliminar un producto de la bodega
+    nombre_producto = Bodega.objects.get(id=bodega_id).producto.nombre
+    eliminado, error = verificar_eliminar_registro(Bodega, bodega_id, True)
 
+    if eliminado:
+        messages.success(request, f'Se ha eliminado el ID {bodega_id} ({nombre_producto}) de la bodega.')
+    else:
+        messages.error(request, error)
+    
     return redirect(bodega)
+
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def miscompras(request):
 
-    # CREAR: lógica para ver las compras del cliente
+    boletas = Boleta.objects.filter(cliente=request.user.perfil)
+    historial = []
+    for boleta in boletas:
+        boleta_historial = {
+            'nro_boleta': boleta.nro_boleta,
+            'fecha_venta': boleta.fecha_venta,
+            'fecha_despacho': boleta.fecha_despacho,
+            'fecha_entrega': boleta.fecha_entrega,
+            'total_a_pagar': boleta.total_a_pagar,
+            'estado': boleta.estado,
+        }
+        historial.append(boleta_historial)
 
-    # CREAR: variable de contexto para enviar el historial de compras del cliente
-    context = { }
+    context = {
+        'historial': historial
+    }
 
     return render(request, 'core/miscompras.html', context)
 

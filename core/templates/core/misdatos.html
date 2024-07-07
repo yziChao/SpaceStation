@@ -3,73 +3,60 @@
 {% load custom_filters %}
 
 {% block content %}
-<div class="registro-body">
-  <form id="form" method="POST" enctype="multipart/form-data">
-    <h2 class="text-center">Mis datos</h2>
-    
-    {% csrf_token %}
-    
-    <div class="container">
-      <div class="row justify-content-center">
-        <!-- ÁREA DE IMAGEN DE PERFIL -->
-        <div class="col-sm-12 col-md-3 text-center mb-4">
-          <div class="row">
-            <!-- ÁREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil -->
-            <div class="col-sm-12" style="height: 220px">
-              <img id="cuadro-imagen" src="{% static 'core/img/Spacestation_Gaming_logo.png' %}">
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-12 col-md-8">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body">
+          <form id="form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="card-title text-center">Mis Datos</h2>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="mb-3">
+                  {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
+                </div>
+                <div class="mb-3">
+                  {{ form_perfil|as_bootstrap_form }}
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="text-center mb-3">
+                  {% if form_perfil.imagen.value %}
+                    <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail" style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                  {% else %}
+                    <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail" style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                  {% endif %}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- Formulario de registrarme -->
-        <div class="col-sm-12 col-md-6">
-          <div class="form-container">
-            <ul class="form-list">
-              <div class="form-group">
-                {{ form_perfil.rut.label_tag }}{{ form_perfil.rut}}
-              </div>
-              <div class="form-group">
-                {{ form_usuario.first_name.label_tag }} {{ form_usuario.first_name}}
-              </div>
-              <div class="form-group">
-                {{ form_usuario.last_name.label_tag }} {{ form_usuario.last_name}}
-              </div>
-              <div class="form-group">
-                {{ form_usuario.email.label_tag }} {{ form_usuario.email}}
-              </div>
-              <div class="form-group">
-                {{ form_perfil.direccion.label_tag }} {{ form_perfil.direccion}}
-              </div>
-              <div class="form-group">
-                {{ form_perfil.subscrito.label_tag }} {{ form_perfil.subscrito}}
-                <span class="extra-text">¿Quiere suscribirse por un aporte mensual de $3000 mensual y obtener 5% en sus compras?</span>
-              </div>
-              <div class="form-group">
-                {{ form_perfil.imagen.label_tag }} {{ form_perfil.imagen}}
-              </div>
-              <div class="form-group">
-                {{ form_usuario.password1.label_tag }} {{ form_usuario.password1}}
-              </div>
-              <div class="form-group">
-                {{ form_usuario.password2.label_tag }} {{ form_usuario.password2}}
-              </div>
-            </ul>
-          </div>
+
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary btn-md">Actualizar mis datos</button>
+              <button class="btn btn-primary btn-md" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <!-- AREA DE BOTONES -->
-    <div class="mt-2 mb-3 text-center">
-      <button type="submit" class="btn btn-primary btn-block"> Actualizar </button>
-      
-      <!-- Boton para "Limpiar formulario" (VER COMENTARIO "BOTON LIMPIAR FORMULARIO" en script.js) -->
-      <button type="reset" class="btn btn-warning btn-block" id="limpiar_formulario"> Limpiar </button>
-    </div>
-  </form>
+  </div>
 </div>
 {% endblock content %}
 
 {% block script %}
-  <script src="{% static 'core/js/misdatos.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'core/css/misdatos.css' %}"/>
+<script src="{% static 'core/js/misdatos.js' %}"></script>
+<script>
+$(document).ready(function() {
+  // Escuchar cambios en el input de imagen
+  $('#id_imagen').change(function(evt) {
+    const file = evt.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      $('#cuadro-imagen').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+});
+</script>
 {% endblock script %}

@@ -14,7 +14,7 @@
 /* Estilos CSS para centrar los elementos <li> dentro de ul.form-list */
 ul.form-list {
   list-style-type: none; /* Elimina los puntos de la lista si los hubiera */
-  padding: 0;
+  padding: 10px;
   text-align: center; /* Centra el contenido */
 }
 
@@ -41,4 +41,9 @@ ul.form-list li {
   content: "";
   display: table;
   clear: both;
+}
+
+.error-message {
+  color: red;  /* Ejemplo de estilo */
+  font-size: 14px;
 }

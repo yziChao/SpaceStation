@@ -3,80 +3,109 @@
 {% load custom_filters %}
 
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-      <div class="card border-0 shadow-lg">
-        <div class="card-body">
-
-          <!-- Cuadro de Imagen -->
-          <div class="text-center mb-4">
-            <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-fluid" alt="Imagen">
+  
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <form id="form" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <h1 class="titulo-mantenedor"> Mantenedor de Bodega </h1>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="mb-3">
+                {{ form|as_bootstrap_form }}
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center mb-2">
+                {% if form.imagen.value %}
+                  <img id="cuadro-imagen" src="/media/{{ form.imagen.value }}" class="img-thumbnail me-3"
+                       style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                {% else %}
+                  <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail me-3"
+                       style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                {% endif %}
+              </div>
+            </div>
           </div>
 
-          <!-- Formulario -->
-          <form id="form" method="POST" class="text-center">
-
-            {% csrf_token %}
-
-            <div class="form-group">
-              {{ form.categoria.label_tag }} {{ form.categoria }}
-            </div>
-            <br>
-            <div class="form-group">
-              {{ form.producto.label_tag }} {{ form.producto }}
-            </div>
-            <br>
-            <div class="form-group">
-              {{ form.cantidad.label_tag }} {{ form.cantidad }}
-            </div>
-            <br>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Agregar Producto</button>
-            </div>
-
-          </form>
-
-          <!-- Tabla de Productos -->
-          {% if productos %}
-          <div class="mt-5">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Imagen</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for producto in productos %}
-                <tr>
-                  <td>
-                    <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
-                  </td>
-                  <td>
-                    {% if producto.estado == 'En bodega' %}
-                    <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}"
-                      class="btn btn-danger btn-sm">Eliminar</a>
-                    {% else %}
-                    <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}"
-                      class="btn btn-primary btn-sm disabled">Eliminar</a>
-                    {% endif %}
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+          <div class="mt-2 mb-3 text-center">
+            <button type="submit" class="btn btn-primary btn-md"> Agregar </button>
+            <button type="reset" class="btn btn-primary btn-md" onclick="document.getElementById('cuadro-imagen').src='{% static 'core/img/sin-imagen.png' %}';"> Nuevo </button>
           </div>
-          {% endif %}
-
-        </div>
+        </form>
       </div>
     </div>
   </div>
-</div>
+
+  {% if productos %}
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title" style="color: black;"> Lista de Productos </h1>
+
+          <table id="tabla-principal" class="table">
+            <thead>
+              <tr>
+                <th style="text-align: center;"> ID </th>
+                <th style="text-align: center;"> Categoría </th>
+                <th style="text-align: center;"> Producto </th>
+                <th style="text-align: center;"> Estado </th>
+                <th style="text-align: center;"> Imagen </th>
+                <th style="text-align: center;"> Acción </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for producto in productos %}
+                <tr>
+                  <td>{{ producto.bodega_id }}</td>
+                  <td>{{ producto.nombre_categoria }}</td>
+                  <td>{{ producto.nombre_producto }}</td>
+                  <td>{{ producto.estado }}</td>
+                  <td style="text-align: center;">
+                    <img src="/media/{{ producto.imagen }}" class="img-thumbnail btn-design2" style="max-height: 75px;"\>
+                  </td>
+                  <td style="text-align: center;">
+                    {% if producto.estado == 'En bodega' %}
+                      <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" class="btn btn-danger btn-sm btn-design1" style="font-style: normal;"> Eliminar </a>
+                    {% else %}
+                      <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" class="btn btn-secondary btn-sm btn-design1 disabled" style="font-style: normal;"> Eliminar </a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock content %}
 
 {% block script %}
-<input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
-<script src="{% static 'core/js/bodega.js' %}"></script>
+  <input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+  <script src="{% static 'core/js/bodega.js' %}"></script>
+  <script src="{% static 'core/css/bodega.css' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#tabla-principal').DataTable({
+        "language": {
+          "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+      });
+      
+      // Escuchar cambios en el input de imagen
+      $('#id_imagen').change(function(evt) {
+        const file = evt.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          $('#cuadro-imagen').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
 {% endblock script %}
