@@ -543,6 +543,10 @@ def carrito(request):
 
     return render(request, 'core/carrito.html', context)
 
+def continuar_compra(request):
+    messages.error(request, 'Forma de pago aún no implementada.')
+    return redirect('carrito')
+
 def agregar_producto_al_carrito(request, producto_id):
 
     if es_personal_autenticado_y_activo(request.user):
