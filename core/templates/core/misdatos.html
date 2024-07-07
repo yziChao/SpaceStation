@@ -3,7 +3,7 @@
 {% load custom_filters %}
 
 {% block content %}
-<div class="container">
+<div class="container misdatos-container">
   <div class="row justify-content-center mt-5">
     <div class="col-sm-12 col-md-8">
       <div class="card border-0 shadow-lg">
@@ -46,6 +46,8 @@
 
 {% block script %}
 <script src="{% static 'core/js/misdatos.js' %}"></script>
+<script src="{% static 'core/js/misdatos.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/misdatos.css' %}">
 <script>
 $(document).ready(function() {
   // Escuchar cambios en el input de imagen

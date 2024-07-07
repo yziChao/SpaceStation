@@ -3,120 +3,171 @@
 {% load custom_filters %}
 
 {% block content %}
-  <div class="card">
+<div class="card">
     <div class="card-body">
-      {% if boleta %}
+        {% if boleta %}
         <!-- Encabezado de la Boleta -->
         <div class="row">
-          <div class="col">
-            <h1 class="card-title">Detalle de boleta</h1>
-          </div>
+            <div class="col">
+                <h1 class="card-title">Detalle de boleta</h1>
+            </div>
         </div>
 
         <!-- Información General de la Boleta -->
         <div class="container mt-4">
-          <div class="row">
-            <div class="col-6">
-              <h2>Boleta N° {{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}</h2>
+            <div class="row">
+                <div class="col-6">
+                    <h2>Boleta N° {{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}</h2>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Detalle de Productos -->
         <div class="container mt-4">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Categoría</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">% Subscriptor</th>
-                <th scope="col">% Oferta</th>
-                <th scope="col">% Descuento Total</th>
-                <th scope="col">Descuento</th>
-                <th scope="col">Precio a Pagar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in detalle_boleta %}
-              <tr>
-                <td>{{ item.bodega.producto.categoria.nombre }}</td>
-                <td><img src="{{ item.bodega.producto.imagen.url }}" class="img-thumbnail btn-design2" style="max-height: 75px;"/></td>
-                <td>{{ item.bodega.producto.nombre }}</td>
-                <td>{{ item.precio|formatear_dinero }}</td>
-                <td>{{ item.descuento_subscriptor|formatear_porcentaje }}</td>
-                <td>{{ item.descuento_oferta|formatear_porcentaje }}</td>
-                <td>{{ item.descuento_total|formatear_porcentaje }}</td>
-                <td>{{ item.descuentos|formatear_dinero }}</td>
-                <td>{{ item.precio_a_pagar|formatear_dinero }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">% Subscriptor</th>
+                        <th scope="col">% Oferta</th>
+                        <th scope="col">% Descuento Total</th>
+                        <th scope="col">Descuento</th>
+                        <th scope="col">Precio a Pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in detalle_boleta %}
+                    <tr>
+                        <td>{{ item.bodega.producto.categoria.nombre }}</td>
+                        <td><img src="{{ item.bodega.producto.imagen.url }}" class="img-thumbnail btn-design2"
+                                style="max-height: 75px;" /></td>
+                        <td>{{ item.bodega.producto.nombre }}</td>
+                        <td>{{ item.precio|formatear_dinero }}</td>
+                        <td>{{ item.descuento_subscriptor|formatear_porcentaje }}</td>
+                        <td>{{ item.descuento_oferta|formatear_porcentaje }}</td>
+                        <td>{{ item.descuento_total|formatear_porcentaje }}</td>
+                        <td>{{ item.descuentos|formatear_dinero }}</td>
+                        <td>{{ item.precio_a_pagar|formatear_dinero }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
         <!-- Estado de la Boleta -->
         <div class="container mt-5">
-          <div class="row">
-            <div class="col">
-              <table class="table">
-                <tr>
-                  <td style="text-align: center; padding-right: 20px;">
-                    <img src="{% static 'core/img/vendido.png' %}" alt="" height="50px">
-                    <br>
-                    Vendido <br> {{ boleta.fecha_venta|formatear_fecha }}
-                  </td>
-                  <td style="text-align: center; padding-right: 20px;">
-                    <img src="{% static 'core/img/despachado.png' %}" alt="" height="50px">
-                    <br>
-                    Despachado <br> {{ boleta.fecha_despacho|formatear_fecha }}
-                  </td>
-                  <td style="text-align: center;">
-                    <img src="{% static 'core/img/entregado.png' %}" alt="" height="50px">
-                    <br>
-                    Entregado <br> {{ boleta.fecha_entrega|formatear_fecha }}
-                  </td>
-                </tr>
-              </table>
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Reservando Producto en Tienda -->
+                            <div class="col-md-4 step-completed">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div
+                                                style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                <i class="fa-solid fa-shop"></i>
+                                            </div>
+
+                                            <div>
+                                                <strong>Producto Vendido</strong>
+                                                <p>{{ boleta.fecha_venta|formatear_fecha }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Producto Listo para Retirar -->
+                            <div class="col-md-4 step-completed">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div
+                                                style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                <i class="fa-solid fa-truck-ramp-box"></i>
+                                            </div>
+
+                                            <div>
+                                                <strong>Producto Despachado</strong>
+                                                <p>{{ boleta.fecha_despacho|formatear_fecha }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Producto Retirado -->
+                            <div class="col-md-4 step-active">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <!-- Contenedor principal para centrar tanto el círculo como el texto -->
+                                        <div style="display: flex; flex-direction: column; align-items: center;">
+                                            <!-- Círculo con el icono -->
+                                            <div
+                                                style="width: 67px; height: 67px; border-radius: 50%; border: 1px solid lightslategrey; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                <i class="fa-solid fa-check"></i>
+                                            </div>
+
+                                            <div>
+                                                <strong>Producto Entregado</strong>
+                                                <p>{{ boleta.fecha_entrega|formatear_fecha }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Totales de la Boleta -->
         <div class="container mt-5">
-          <div class="row">
-            <div class="col">
-              <table class="table">
-                <tr>
-                  <td>Precio sin IVA</td>
-                  <td><input type="text" class="form-control" name="precio_sin_iva" id="precio_sin_iva" value="{{ boleta.monto_sin_iva|formatear_dinero }}" readonly /></td>
-                </tr>
-                <tr>
-                  <td>Valor del IVA (19%)</td>
-                  <td><input type="text" class="form-control" name="valor_del_iva" id="valor_del_iva" value="{{ boleta.iva|formatear_dinero }}" readonly /></td>
-                </tr>
-                <tr>
-                  <td>Total a pagar</td>
-                  <td><input type="text" class="form-control" name="total_a_pagar" id="total_a_pagar" value="{{ boleta.total_a_pagar|formatear_dinero }}" readonly /></td>
-                </tr>
-              </table>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <tr>
+                            <td>Precio sin IVA</td>
+                            <td><input type="text" class="form-control" name="precio_sin_iva" id="precio_sin_iva"
+                                    value="{{ boleta.monto_sin_iva|formatear_dinero }}" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>Valor del IVA (19%)</td>
+                            <td><input type="text" class="form-control" name="valor_del_iva" id="valor_del_iva"
+                                    value="{{ boleta.iva|formatear_dinero }}" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>Total a pagar</td>
+                            <td><input type="text" class="form-control" name="total_a_pagar" id="total_a_pagar"
+                                    value="{{ boleta.total_a_pagar|formatear_dinero }}" readonly /></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
 
-      {% else %}
+        {% else %}
         <!-- Mensaje si no se puede mostrar la boleta -->
         <div class="container mt-4">
-          <div class="row">
-            <div class="col">
-              <h2 style="color: greenyellow; text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);">
-                No se puede mostrar la boleta
-              </h2>
+            <div class="row">
+                <div class="col">
+                    <h2 style="color: greenyellow; text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);">
+                        No se puede mostrar la boleta
+                    </h2>
+                </div>
             </div>
-          </div>
         </div>
-      {% endif %}
+        {% endif %}
     </div>
-  </div>
+</div>
 {% endblock content %}

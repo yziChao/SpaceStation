@@ -1,114 +1,17 @@
-#imagen-usuario {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 1 auto;
-}
+/* static/core/css/misdatos.css */
 
-.centered-form {
-  text-align: center; 
-  margin-top: 50px;   
-}
-
-.centered-form form {
-  display: inline-block; 
-  text-align: left;      
-  padding: 20px;         
-  background-color: #f9f9f9; 
-  border: 1px solid #ddd;    
-  border-radius: 5px;        
-  box-shadow: 30px 30px 30px rgba(104, 99, 99, 0.596);
-}
-
-body.registro-body {
+body {
   font-family: Arial, sans-serif;
-  background: url('../img/nfs4.jpg') no-repeat center center fixed;
+  background-image: url('/static/core/img/asseto.jpg');
   background-size: cover;
-  padding: 20px;
 }
 
-.registro-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.registro-form {
-  background-color: #f9f9f9;
+.card {
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
   border: 2px solid #ccc;
-  border-radius: 25px;
-  width: 100%;   
-  box-shadow: 50px 50px 50px rgba(95, 92, 92, 0.1);
-  box-sizing: border-box;
-  border-color: #0066cc;
-  outline: none;
-}
-
-.form-control {
+  border-radius: 15px;
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.form-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.form-list .form-group {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.form-list .form-group label {
-  flex: 0 0 150px;
-  margin-right: 10px;
-}
-
-.input-contenedor div:first-child {
-  flex: 0 0 150px;
-  display: flex;
-  align-items: center;
-}
-
-.input-right {
-  flex: 1;
-}
-
-.extra-text {
-  margin-left: 10px;
-  color: black;
-}
-
-.form-container {
-  background: rgba(255, 255, 255, 0.9); /* Transparent white background */
-  padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-#form {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-button {
-  margin: 5px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
 }

@@ -1,6 +1,6 @@
 h1 {
   font-size: x-large;
-  color: blue !important;
+  color: black !important;
   font-weight: bolder;
   margin-bottom: 20px;
   text-align: center;
@@ -15,7 +15,8 @@ input, textarea, select {
   border-color: darkgray !important; /* Cambia "red" al color deseado */
 }
 
-/* Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
-/* div {
-  border: 1px solid blue;
-} */
+body {
+  position: relative;
+  padding-bottom: 100px;
+}
+

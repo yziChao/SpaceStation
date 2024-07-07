@@ -2,6 +2,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 1200px; /* Ajusta el ancho máximo del formulario */
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(200, 200, 200, 0.8); /* Color gris semi-transparente */
+  border-radius: 10px; /* Borde redondeado */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
 .card-img-top {
@@ -12,3 +18,10 @@
 .api-title h1 {
   color: black;
 }
+
+body {
+  background: url('/static/core/img/api.png') no-repeat center center fixed;
+  background-size: cover; /* Ajusta la imagen para cubrir toda el área */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+

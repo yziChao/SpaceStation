@@ -34,25 +34,18 @@
                   {{ form.descuento_oferta|as_bootstrap_field }}
                 </div>
                 <input type="file" id="id_imagen" name="imagen" style="display: none;">
-                <div class="form-group text-center">
-                  <input class="btn btn-primary" type="submit" value="Guardar">
-                  <a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}"> Nuevo </a>
-                  <button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
-                  {% if form.instance.id %}
-                    <a class="btn btn-primary"  href="{% url 'productos' 'eliminar' form.instance.id %}"> Eliminar </a>
-                  {% endif %}
+                <div class="form-group text-center d-flex justify-content-between">
+                  <input class="btn btn-primary" type="submit" value="Guardar"><a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}">Nuevo</a><button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>{% if form.instance.id %}<a class="btn btn-primary" href="{% url 'productos' 'eliminar' form.instance.id %}">Eliminar</a>{% endif %}
                 </div>
               </form>
             </div>
             <div class="col-md-6">
               <div class="mb-3 text-center">
                 <h4>Imagen del Producto</h4>
-                {% if form_perfil.imagen.value %}
-                  <img id="cuadro-imagen" src="/media/{{ form_perfil.imagen.value }}" class="img-thumbnail me-3"
-                    style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                {% if form.instance.imagen %}
+                  <img id="cuadro-imagen" src="/media/{{ form.instance.imagen }}" class="img-thumbnail me-3" style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
                 {% else %}
-                  <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail me-3"
-                    style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
+                  <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-thumbnail me-3" style="width: 250px; height: auto; object-fit: cover; background-color: #1A1A1A;">
                 {% endif %}
               </div>
             </div>
@@ -71,16 +64,16 @@
           <table id="tabla-principal" class="table table-hover">
             <thead>
               <tr>
-                <th> ID </th>
-                <th> Categoría </th>
-                <th> Nombre </th>
-                <th> Descripción </th>
-                <th> Precio </th>
-                <th> %Subs </th>
-                <th> %Oferta </th>
-                <th> Imagen </th>
-                <th> Editar </th>
-                <th> Eliminar </th>
+                <th>ID</th>
+                <th>Categoría</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>%Subs</th>
+                <th>%Oferta</th>
+                <th>Imagen</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
@@ -97,12 +90,12 @@
                     <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
                   </td>
                   <td>
-                    <a href="{% url 'productos' 'actualizar' producto.id %}" class="btn btn-primary btn-sm"> Editar </a>
+                    <a href="{% url 'productos' 'actualizar' producto.id %}" class="btn btn-primary btn-sm">Editar</a>
                   </td>
                   <td>
                     <form method="post" action="{% url 'productos' 'eliminar' producto.id %}">
                       {% csrf_token %}
-                      <button type="submit" class="btn btn-danger btn-sm"> Eliminar </button>
+                      <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
                   </td>
                 </tr>
@@ -120,6 +113,8 @@
 <script src="{% static 'core/js/jquery.min.js' %}"></script>
 <script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'core/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/js/productos.js' %}"></script>
+<link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
 <script>
 $(document).ready(function() {
   $('#tabla-principal').DataTable();
@@ -137,6 +132,5 @@ document.getElementById('id_imagen').onchange = function (evt) {
   }
 };
 </script>
-<link rel="stylesheet" href="{% static 'core/css/dataTables.bootstrap4.min.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/productos.css' %}">
 {% endblock script %}

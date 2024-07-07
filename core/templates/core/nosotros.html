@@ -5,9 +5,10 @@
 
 <div class="container">
   <div class="jumbotron text-center py-5 mb-5">
-    <h1 class="display-4">Acerca de Nosotros</h1>
+    <h2 class="display-4" style="color: white;">Acerca de Nosotros</h2>
     <p class="lead">Somos una empresa comprometida con nuestros clientes, ofreciendo productos de alta calidad y un excelente servicio.</p>
   </div>
+  
 
   <div class="container mb-5">
     <div class="row">
@@ -82,10 +83,14 @@
   </div>
 </div>
 
+
+{% endblock content %}
+
+{% block script %}
 <script>
   function redirectToIndex() {
     window.location.href = "{% url 'inicio' %}";
   }
 </script>
-
-{% endblock content %}
+<link rel="stylesheet" href="{% static 'core/css/nosotros.css' %}">
+{% endblock script %}

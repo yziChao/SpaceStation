@@ -360,12 +360,16 @@ def bodega(request):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def obtener_productos(request):
-    # La vista obtener_productos la usa la pagina "Administracion de bodega", para
-    # filtrar el combobox de productos cuando el usuario selecciona una categoria
-    
-    # CREAR: Un JSON para devolver los productos que corresponden a la categoria
 
-    data = []
+    categoria_id = request.GET.get('categoria_id')
+    productos = Producto.objects.filter(categoria_id=categoria_id)
+    data = [
+        {
+            'id': producto.id,
+            'nombre': producto.nombre,
+            'imagen': producto.imagen.url
+        } for producto in productos
+    ]
     return JsonResponse(data, safe=False)
 
 @user_passes_test(es_personal_autenticado_y_activo)

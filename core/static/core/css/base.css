@@ -104,20 +104,10 @@
 }
 
 .menu-inferior {
-    background-color: #222;
+    background-color: #f8f9fa;
     color: white;
     padding: 20px;
     text-align: center;
-}
-
-.instrucciones-para-el-alumno {
-    font-size: 14px;
-    font-weight: bold;
-    color: red;
-    background-color: yellow;
-    border: 3px solid darkgray;
-    margin: 4px;
-    /* display: none; */
 }
 
 footer {
@@ -125,7 +115,19 @@ footer {
     background-color: #343a40;
     color: white;
     text-align: center;
+    padding: 1%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
 }
+
+footer svg {
+    width: 1.5em; /* Tamaño de los íconos */
+    height: 1.5em;
+    vertical-align: middle; /* Alinea verticalmente los íconos */
+    margin: 0 5px; /* Espaciado entre los íconos */
+  }
 
 
 .content {

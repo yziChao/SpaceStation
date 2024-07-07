@@ -93,10 +93,17 @@ $(document).ready(function() {
                 range: 'El descuento debe ser un número entre 0 y 100',
             },
         },
+        errorElement: 'div', // Utiliza un elemento <div> para los mensajes de error
+        errorClass: 'invalid-feedback', // Aplica la clase de Bootstrap para los mensajes de error
         errorPlacement: function(error, element) {
-            error.insertAfter(element); // Inserta el mensaje de error después del elemento
-            error.addClass('error-message'); // Aplica una clase al mensaje de error
+            error.appendTo(element.parent()); // Inserta el mensaje de error después del elemento padre
         },
+        highlight: function(element, errorClass, validClass) {
+            $(element).addClass('is-invalid'); // Aplica la clase de Bootstrap para resaltar errores
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).removeClass('is-invalid'); // Quita la clase de Bootstrap cuando se corrige el error
+        }
     });
 
 });
