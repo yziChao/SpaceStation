@@ -3,12 +3,18 @@
 {% load custom_filters %}
 
 {% block content %}
+<br>
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
                     <table id="tabla-principal" class="table table-hover">
+                        <h2 class= "text-center"> Mis Compras </h2>
+                        <br>
                         <thead>
                             <tr>
                                 <th> Nro boleta </th>
@@ -46,3 +52,8 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block script %}
+<script src="{% static 'core/css/miscompras.css' %}"></script>
+<link rel="stylesheet" href="{% static 'core/css/miscompras.css' %}">
+{% endblock script %}
