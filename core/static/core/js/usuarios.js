@@ -25,7 +25,7 @@ $(document).ready(function() {
   });
 
   // Configuración de validación del formulario
-  $('#form-ingreso').validate({ 
+  $('#form-usuarios').validate({ 
       rules: {
         'username': {
           required: true,
@@ -60,7 +60,7 @@ $(document).ready(function() {
         },
         'tipo_usuario': {
           required: 'Debe ingresar un tipo de usuario',
-          inList: 'Debe ingresar un tipo de usuario',
+          inList: 'Debe ingresar un tipo de usuario válido',
         },
         'first_name': {
           required: 'Debe ingresar su nombre',
@@ -82,12 +82,17 @@ $(document).ready(function() {
           required: 'Debe ingresar su dirección',
         },
       },
+      errorElement: 'div', // Utiliza un elemento <div> para los mensajes de error
+      errorClass: 'invalid-feedback', // Aplica la clase de Bootstrap para los mensajes de error
       errorPlacement: function(error, element) {
-        // Inserta el mensaje de error después del elemento
-        error.insertAfter(element);
-        // Aplica una clase al mensaje de error
-        error.addClass('error-message');
+          error.appendTo(element.parent()); // Inserta el mensaje de error después del elemento padre
       },
+      highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid'); // Aplica la clase de Bootstrap para resaltar errores
+      },
+      unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid'); // Quita la clase de Bootstrap cuando se corrige el error
+      }
   });
 
   $('#id_generar_password').click(function() {

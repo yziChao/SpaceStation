@@ -17,7 +17,7 @@ $(document).ready(function() {
     required: "Este campo es requerido",
   });
 
-  $('#form').validate({ 
+  $('#form-registrarme').validate({ 
       rules: {
         'username': {
           required: true,
@@ -82,10 +82,17 @@ $(document).ready(function() {
           equalTo: 'Debe repetir la contraseña anterior'
         }
       },
+      errorElement: 'div', // Utiliza un elemento <div> para los mensajes de error
+      errorClass: 'invalid-feedback', // Aplica la clase de Bootstrap para los mensajes de error
       errorPlacement: function(error, element) {
-        error.insertAfter(element); // Inserta el mensaje de error después del elemento
-        error.addClass('error-message'); // Aplica una clase al mensaje de error
+          error.appendTo(element.parent()); // Inserta el mensaje de error después del elemento padre
       },
+      highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid'); // Aplica la clase de Bootstrap para resaltar errores
+      },
+      unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid'); // Quita la clase de Bootstrap cuando se corrige el error
+      }
   });
 
 });

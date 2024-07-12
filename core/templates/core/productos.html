@@ -34,8 +34,13 @@
                   {{ form.descuento_oferta|as_bootstrap_field }}
                 </div>
                 <input type="file" id="id_imagen" name="imagen" style="display: none;">
-                <div class="form-group text-center d-flex justify-content-between">
-                  <input class="btn btn-primary" type="submit" value="Guardar"><a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}">Nuevo</a><button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>{% if form.instance.id %}<a class="btn btn-primary" href="{% url 'productos' 'eliminar' form.instance.id %}">Eliminar</a>{% endif %}
+                <div class="form-group text-center">
+                  <input class="btn btn-primary mb-2" type="submit" value="Guardar">
+                  <a class="btn btn-primary mb-2 ml-2" href="{% url 'productos' 'crear' '0' %}">Nuevo</a>
+                  <button class="btn btn-primary mb-2 ml-2" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>
+                  {% if form.instance.id %}
+                  <a class="btn btn-primary mb-2 ml-2" href="{% url 'productos' 'eliminar' form.instance.id %}">Eliminar</a>
+                  {% endif %}
                 </div>
               </form>
             </div>

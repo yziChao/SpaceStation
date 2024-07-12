@@ -8,7 +8,7 @@
     <div class="card border-0 shadow-lg">
       <div class="card-body">
         <h2 class="card-title text-center mb-4">Mantenedor de Usuarios</h2>
-        <form id="form" method="POST" enctype="multipart/form-data">
+        <form id="form-usuarios" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="row">
             <div class="col-md-6">
@@ -20,10 +20,6 @@
               <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-md">Guardar</button>
                 <a href="{% url 'usuarios' 'crear' '0' %}" class="btn btn-primary btn-md">Nuevo</a>
-                <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();" class="btn btn-primary btn-md">Seleccionar Imagen</button>
-                {% if form_usuario.instance.id %}
-                  <a class="btn btn-primary btn-md" href="{% url 'usuarios' 'eliminar' form_usuario.instance.id %}">Eliminar</a>
-                {% endif %}
               </div>
             </div>
             <div class="col-md-6">
@@ -126,4 +122,5 @@
 </script>
 <script src="{% static 'core/css/usuarios.css' %}"></script>
 <link rel="stylesheet" href="{% static 'core/css/usuarios.css' %}">
+<script src="{% static 'core/js/usuarios.js' %}"></script>
 {% endblock script %}

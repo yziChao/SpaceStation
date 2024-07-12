@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in detalle_boleta %}
+                    {% for item in detalles %}
                     <tr>
                         <td>{{ item.bodega.producto.categoria.nombre }}</td>
                         <td><img src="{{ item.bodega.producto.imagen.url }}" class="img-thumbnail btn-design2"

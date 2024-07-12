@@ -88,95 +88,108 @@ def poblar_bd(test_user_email=''):
     eliminar_tablas()
 
     crear_usuario(
-        username='cevans',
+        username='jperez',
         tipo='Cliente', 
-        nombre='Chris', 
-        apellido='Evans', 
-        correo=test_user_email if test_user_email else 'cevans@marvel.com', 
+        nombre='Juan', 
+        apellido='Perez', 
+        correo=test_user_email if test_user_email else 'jperez@jotmail.com', 
         es_superusuario=False, 
         es_staff=False, 
         rut='25.747.200-0',	
-        direccion='123 Main Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos', 
+        direccion='Tenderini 82 P. 7, Región Metropolitana de Santiago', 
         subscrito=True, 
-        imagen='perfiles/cevans.jpg')
+        imagen='perfiles/jperez.jpg')
 
     crear_usuario(
-        username='eolsen',
+        username='jgonzalez',
         tipo='Cliente', 
-        nombre='Elizabeth', 
-        apellido='Olsen', 
-        correo=test_user_email if test_user_email else 'eolsen@marvel.com', 
+        nombre='Juana', 
+        apellido='Gonzalez', 
+        correo=test_user_email if test_user_email else 'jgonzalez@jotmail.com', 
         es_superusuario=False, 
         es_staff=False, 
         rut='12.202.357-5', 
-        direccion='Albert Street, New York, \nNew York 10001 \nEstados Unidos', 
+        direccion='Calle Isabel Riquelme, 895', 
         subscrito=True, 
-        imagen='perfiles/eolsen.jpg')
+        imagen='perfiles/jgonzalez.jpg')
 
     crear_usuario(
-        username='tholland',
+        username='mpinto',
         tipo='Cliente', 
-        nombre='Tom', 
-        apellido='Holland', 
-        correo=test_user_email if test_user_email else 'tholland@marvel.com', 
+        nombre='Manuel', 
+        apellido='Pinto', 
+        correo=test_user_email if test_user_email else 'mpinto@jotmail.com', 
         es_superusuario=False, 
         es_staff=False, 
         rut='11.991.600-3', 
-        direccion='105 Apple Park Way, \nCupertino, CA 95014 \nEstados Unidos', 
+        direccion='Avenida 21 De Mayo, 1465', 
         subscrito=False, 
-        imagen='perfiles/tholland.jpg')
+        imagen='perfiles/mpinto.jpg')
 
     crear_usuario(
-        username='sjohansson',
+        username='nriffo',
         tipo='Cliente', 
-        nombre='Scarlett', 
-        apellido='Johansson', 
-        correo=test_user_email if test_user_email else 'sjohansson@marvel.com', 
+        nombre='Natalia', 
+        apellido='Riffo', 
+        correo=test_user_email if test_user_email else 'nriffo@jotmail.com', 
         es_superusuario=False, 
         es_staff=False, 
         rut='16.469.725-8', 
-        direccion='350 5th Ave, \nNew York, NY 10118 \nEstados Unidos', 
+        direccion='Avenida Valle Del Maipo 4134 barrio Las Rosas, Maipú', 
         subscrito=False, 
-        imagen='perfiles/sjohansson.jpg')
+        imagen='perfiles/nriffo.jpg')
 
     crear_usuario(
-        username='cpratt',
+        username='mgranifo',
         tipo='Administrador', 
-        nombre='Chris', 
-        apellido='Pratt', 
-        correo=test_user_email if test_user_email else 'cpratt@marvel.com', 
+        nombre='Marion', 
+        apellido='Granifo', 
+        correo=test_user_email if test_user_email else 'mari.granifo@duocuc.cl', 
         es_superusuario=False, 
         es_staff=True, 
         rut='19.441.980-5', 
-        direccion='10 Pine Road, Miami, \nFlorida 33101 \nEstados Unidos', 
+        direccion='García Sierpes 05.', 
         subscrito=False, 
-        imagen='perfiles/cpratt.jpg')
+        imagen='perfiles/mgranifo.jpg')
     
     crear_usuario(
-        username='mruffalo',
+        username='triveros',
         tipo='Administrador', 
-        nombre='Mark', 
-        apellido='Ruffalo', 
-        correo=test_user_email if test_user_email else 'mruffalo@marvel.com', 
+        nombre='Tomas', 
+        apellido='Riveros', 
+        correo=test_user_email if test_user_email else 't.riveros@duocuc.cl', 
         es_superusuario=False, 
         es_staff=True, 
         rut='21.708.052-5', 
-        direccion='1600 Pennsylvania Avenue NW, \nWashington, D.C. \nEstados Unidos', 
+        direccion='Avenida Los Dominicos, 8176 - Of. 8', 
         subscrito=False, 
-        imagen='perfiles/mruffalo.jpg')
+        imagen='perfiles/triveros.jpg')
+    
+    crear_usuario(
+        username='zyuan',
+        tipo='Administrador', 
+        nombre='Zichao', 
+        apellido='Yuan', 
+        correo=test_user_email if test_user_email else 'zi.yuan@duocuc.cl', 
+        es_superusuario=False, 
+        es_staff=True, 
+        rut='21.966.370-6', 
+        direccion='Calle Tabare 681 , Recoleta', 
+        subscrito=False, 
+        imagen='perfiles/ziyuan.jpg')
 
     crear_usuario(
-        username='super',
+        username='Spacestation',
         tipo='Superusuario',
-        nombre='Robert',
-        apellido='Downey Jr.',
-        correo=test_user_email if test_user_email else 'rdowneyjr@marvel.com',
+        nombre='Space',
+        apellido='Station',
+        correo=test_user_email if test_user_email else 'SpaceStation@spstt.com',
         es_superusuario=True,
         es_staff=True,
         rut='13.029.317-4',
-        direccion='15 Oak Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos',
+        direccion='12777 Jefferson Blvd, Los Angeles, CA 90066',
         subscrito=False,
-        imagen='perfiles/rdowneyjr.jpg')
+        imagen='perfiles/spst.jpg')
     
     categorias_data = [
         { 'id': 1, 'nombre': 'Acción'},
@@ -195,52 +208,52 @@ def poblar_bd(test_user_email=''):
         {
             'id': 1,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Grand Theft Auto V',
-            'descripcion': 'Grand Theft Auto V te sumerge en la soleada ciudad de Los Santos y sus alrededores, donde seguirás las historias entrelazadas de tres criminales muy diferentes mientras planean y ejecutan audaces atracos para sobrevivir en una ciudad despiadada. Disfruta de un mundo abierto enorme y detallado, con una gran variedad de misiones, actividades y desafíos, además de un modo online multijugador en constante evolución.',
-            'precio': 29990,
+            'nombre': 'The Outlast Trials',
+            'descripcion': 'Descripción Una vez dentro, su única esperanza de escapar reside en la terrible verdad que se oculta en el corazón del monte Massive. Outlast es toda una experiencia de horror y supervivencia que pretende demostrar que los monstruos más terribles se originan en la mente humana.',
+            'precio': 21990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000001.jpg'
+            'imagen': 'productos/otlast.jpg'
         },
         {
             'id': 2,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Red Dead Redemption 2',
-            'descripcion': 'Red Dead Redemption 2 es una épica historia sobre la vida en el despiadado corazón de América. El vasto y evocador mundo del juego también proporcionará la base para una nueva experiencia multijugador online.',
-            'precio': 59990,
+            'nombre': 'Need For Speed',
+            'descripcion': 'Need for Speed es un juego de conducción arcade en mundo abierto desarrollado por Ghost Games y Electronic Arts para PS4, Xbox One y PC. Las carreras ilegales y el tuning vuelven en esta entrega en la que tenemos que competir siempre de noche por las calles de Ventura Bay, conduciendo algunos de los coches más lujosos del mercado.',
+            'precio': 12999,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000002.jpg'
+            'imagen': 'productos/nfs.jpg'
         },
         {
             'id': 3,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Call of Duty: Modern Warfare II',
-            'descripcion': 'Call of Duty: Modern Warfare II es la secuela de Modern Warfare (2019) y la decimonovena entrega de la serie Call of Duty. La campaña de Modern Warfare II sigue a la Fuerza Operativa 141 mientras persiguen a un terrorista iraní llamado Hassan Zyani, quien adquirió un misil balístico estadounidense.',
-            'precio': 69990,
+            'nombre': 'Assetto Corsa',
+            'descripcion': 'Assetto Corsa es un simulador de conducción desarrollado y publicado por Kunos Simulazioni para PlayStation 4, Xbox One y PC. Uno de los juegos de coches más realistas del mercado y que satisface a los apasionados del motor más exigentes, con un gameplay exigente y complejo, un sofisticado sistema de físicas y la enorme atención al detalle en el diseño de los coches y los circuitos, recreados de manera realista al ser digitalizados mediante láser.',
+            'precio': 30990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
-            'imagen': 'productos/000003.jpg'
+            'imagen': 'productos/asseto.jpg'
         },
         {
             'id': 4,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'God of War Ragnarök',
-            'descripcion': 'Únete a Kratos y Atreus en un viaje mítico por los Nueve Reinos mientras se preparan para la profetizada batalla que acabará con el mundo. En God of War Ragnarök, explorarás paisajes impresionantes y te enfrentarás a temibles enemigos, tanto dioses como monstruos, mientras buscas respuestas y aliados antes de que llegue el Ragnarök.',
-            'precio': 69990,
+            'nombre': 'Dying Light 2',
+            'descripcion': 'Dying Light 2 es un juego de acción y rol en primera persona para PlayStation 4, PlayStation 5, Xbox One, Xbox Series y PC desarrollado por Techland que, como en la primera parte, vuelve a hacer gala de un sistema de parkour y saltos imposibles. Ambientado en un mundo en el que ser el humano sobrevive como puede a la amenaza de los no muertos, esta segunda parte añade mecánicas y sistemas de juego más ambiciosos y complejos.',
+            'precio': 17990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 5,
-            'imagen': 'productos/000004.jpg'
+            'imagen': 'productos/dy2.jpg'
         },
         {
             'id': 5,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Doom Eternal',
-            'descripcion': 'Doom Eternal es un shooter en primera persona desarrollado por id Software y publicado por Bethesda Softworks. El juego continúa la historia de Doom (2016), y sigue al Doom Slayer en su lucha contra las fuerzas del infierno que han invadido la Tierra.',
-            'precio': 19990,
+            'nombre': 'Cyber punk 2077',
+            'descripcion': 'Cyberpunk 2077 es el nuevo videojuego de rol en primera persona con estructura de mundo abierto de CD Projekt RED. Los padres de The Witcher nos presentan para Xbox One, PC y PS4 una aventura de corte futurista y ciberpunk en la que encarnaremos a un personaje diseñado a nuestra medida y en la que tendremos que sobrevivir en una peligrosa urbe plagada de corporaciones, ciborgs, bandas y las más variadas amenazas tecnológicas.',
+            'precio': 36990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 20,
-            'imagen': 'productos/000005.jpg'
+            'imagen': 'productos/cyber.jpg'
         },
         {
             'id': 6,
@@ -250,151 +263,121 @@ def poblar_bd(test_user_email=''):
             'precio': 59990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000006.jpg'
+            'imagen': 'productos/elden.jpg'
         },
         {
             'id': 7,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Horizon Forbidden West',
-            'descripcion': 'Horizon Forbidden West es la secuela de Horizon Zero Dawn. El juego sigue a Aloy, una joven cazadora en un mundo postapocalíptico gobernado por máquinas. En Forbidden West, Aloy debe viajar a una nueva y peligrosa frontera para investigar una misteriosa plaga que está matando la vida vegetal y animal.',
-            'precio': 69990,
+            'nombre': 'God of War 4',
+            'descripcion': 'God of War es la vuelta de Kratos a los videojuegos tras la trilogía original. Esta nueva entrega para PlayStation 4, si bien mantendrá varios de los ingredientes indivisibles de su jugabilidad, apostará por un nuevo comienzo para el personaje y una ambientación nórdica, ofreciéndonos una perspectiva más madura y realista de la mitología de dioses y monstruos milenarios habitual en la serie de títulos. En God of War, Kratos será un guerrero más curtido y pasivo, pues tendrá que desempeñar el rol de padre en un frío y hostil escenario, al que parece haberse retirado para olvidar su pasado.',
+            'precio': 30990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
-            'imagen': 'productos/000007.jpg'
+            'imagen': 'productos/gow2.jpg'
         },
         {
             'id': 8,
             'categoria': Categoria.objects.get(id=1),
-            'nombre': 'Spider-Man: Miles Morales',
-            'descripcion': 'Spider-Man: Miles Morales es un juego de acción y aventura desarrollado por Insomniac Games y publicado por Sony Interactive Entertainment. El juego sigue a Miles Morales, un adolescente que adquiere poderes similares a los de Spider-Man después de ser mordido por una araña genéticamente modificada.',
-            'precio': 49990,
+            'nombre': 'Resident Evil 4',
+            'descripcion': 'Resident Evil 4 Remake es la reimaginación del clásico juego de acción y terror en tercera persona desarrollado por Capcom para PlayStation 4 y 5, Xbox One, Xbox Series S y X y PC. Se trata de la puesta al día del survival horror de la saga Resident Evil lanzado en 2005, una ambiciosa puesta al día a nivel jugable y gráfico que nos devuelve a Leon S. Kennedy en su viaje a un récondito pueblo de España en su rescate de la hija del presidente de Estados Unidos.',
+            'precio': 38990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000008.jpg'
+            'imagen': 'productos/re4.jpg'
         },
         # Categoría "Aventura" (4 juegos)
         {
             'id': 9,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'The Legend of Zelda: Breath of the Wild',
-            'descripcion': 'The Legend of Zelda: Breath of the Wild es un videojuego de acción-aventura desarrollado y publicado por Nintendo para las consolas Nintendo Switch y Wii U. El juego es la decimonovena entrega de la serie The Legend of Zelda y fue lanzado mundialmente en marzo de 2017. Breath of the Wild es un juego de mundo abierto que permite a los jugadores explorar libremente el reino de Hyrule.',
-            'precio': 59990,
+            'nombre': 'Minecraft',
+            'descripcion': 'Minecraft es un videojuego tipo sandbox, su traducción literal sería “caja de arena” y es lo que representa la experiencia de juego. Los jugadores pueden modelar el mundo a su gusto, destruir y construir, como si estuviesen jugando en una caja de arena.',
+            'precio': 23990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
-            'imagen': 'productos/000009.jpg'
+            'imagen': 'productos/minecraf.jpg'
         },
         {
             'id': 10,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Uncharted 4: A Thief\'s End',
-            'descripcion': 'Uncharted 4: A Thief\'s End es un videojuego de acción-aventura desarrollado por Naughty Dog y publicado por Sony Computer Entertainment para PlayStation 4. El juego fue lanzado en mayo de 2016 y es la cuarta entrega principal de la serie Uncharted. La historia sigue a Nathan Drake, un cazador de tesoros retirado que se ve obligado a volver a su antigua vida cuando su hermano Sam reaparece.',
-            'precio': 19990,
+            'nombre': 'Terraria 2',
+            'descripcion': 'Terraria 2 es un juego de supervivencia desarrollado por Re-Logic. La secuela del popular y exitoso sandbox en 2D, uno de los indies más exitosos de todos los tiempos, que tiene la tarea de superar un juego completísimo y que sigue siendo de los más jugados más de diez años después de su lanzamiento, que promete ofrecer nuevas mecánicas, gráficos mejorados y mundo infinitos.',
+            'precio': 5990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 20,
-            'imagen': 'productos/000010.jpg'
+            'imagen': 'productos/terraria.jpg'
         },
         {
             'id': 11,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Assassin\'s Creed Valhalla',
-            'descripcion': 'Assassin\'s Creed Valhalla es un videojuego de acción-aventura desarrollado por Ubisoft Montreal y publicado por Ubisoft. Es la duodécima entrega principal de la serie Assassin\'s Creed y la sucesora de Assassin\'s Creed Odyssey de 2018. El juego se lanzó en noviembre de 2020 para Microsoft Windows, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S y Stadia.',
-            'precio': 59990,
+            'nombre': 'Red Dead Redemtion 2',
+            'descripcion': 'Red Dead Redemption 2, desarrollado por Rockstar Games, es una épica de acción-aventura en un mundo abierto que representa la cúspide del diseño de videojuegos moderno. Originalmente lanzado para PlayStation 4 y Xbox One en 2018, el juego fue posteriormente adaptado para PC en 2019, brindando mejoras significativas en gráficos y rendimiento, así como contenido adicional.',
+            'precio': 23990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000011.jpg'
+            'imagen': 'productos/rdr2.jpg'
         },
         {
             'id': 12,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Star Wars Jedi: Fallen Order',
-            'descripcion': 'Star Wars Jedi: Fallen Order es una emocionante aventura de acción en tercera persona ambientada en el universo de Star Wars. Ponte en la piel de Cal Kestis, un padawan que sobrevivió a la Orden 66 y debe completar su entrenamiento, desarrollar nuevas y poderosas habilidades con la Fuerza y dominar el arte del sable láser mientras te mantienes un paso por delante del Imperio y sus mortíferos Inquisidores.',
-            'precio': 39990,
+            'nombre': 'Skyrim',
+            'descripcion': 'The Elder Scrolls V: Skyrim es un videojuego de rol de acción de mundo abierto desarrollado por Bethesda Game Studios y publicado por Bethesda Softworks. Es la quinta entrega de la serie de fantasía The Elder Scrolls y es posterior a Oblivion y predecesor de Online.',
+            'precio': 30990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000012.jpg'
+            'imagen': 'productos/skyrim.jpg'
         },
         # Categoría "Estrategia" (4 juegos)
         {
             'id': 13,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Civilization VI',
-            'descripcion': 'Civilization VI es un juego de estrategia por turnos en el que los jugadores intentan construir un imperio que resista el paso del tiempo. Explora un nuevo mundo, investiga tecnologías, conquista a tus enemigos y enfréntate a los líderes más famosos de la historia mientras intentas construir la civilización más grande jamás conocida.',
+            'nombre': 'Starcraft 2',
+            'descripcion': 'StarCraft II es un videojuego de estrategia en tiempo real actualmente en desarrollo por parte de Blizzard Entertainment para PC Windows y Macintosh. Será la segunda parte de StarCraft (1998).',
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 5,
-            'imagen': 'productos/000013.jpg'
+            'imagen': 'productos/sc2.jpg'
         },
         {
             'id': 14,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'XCOM 2',
-            'descripcion': 'XCOM 2 es la secuela del galardonado juego de estrategia XCOM: Enemy Unknown. La Tierra ha cambiado y ahora está bajo control alienígena. Como líder de XCOM, una organización militar secreta, debes reconstruir la base de operaciones, reclutar nuevos soldados y liderar la resistencia para liberar a la humanidad del yugo alienígena.',
-            'precio': 19990,
+            'nombre': 'Age of Empires IV',
+            'descripcion': 'Age of Empires IV es un juego de estrategia en tiempo real desarrollado por Relic Entertainment y publicado por Xbox Game Studios. El juego es la cuarta entrega principal de la serie Age of Empires y fue lanzado en octubre de 2021. El juego presenta ocho civilizaciones jugables, cada una con sus propias unidades, tecnologías y edificios únicos.',
+            'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000014.jpg'
+            'imagen': 'productos/age.jpg'
         },
         {
             'id': 15,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Total War: Warhammer III',
-            'descripcion': 'Total War: Warhammer III es un juego de estrategia en tiempo real y por turnos ambientado en el mundo de fantasía de Warhammer. El juego presenta cuatro razas jugables: Kislev, Cathay, Khorne y Nurgle, cada una con sus propias unidades, mecánicas y objetivos de campaña. Los jugadores pueden liderar a sus ejércitos en batallas masivas en tiempo real y gestionar sus imperios en un mapa de campaña por turnos.',
-            'precio': 59990,
+            'nombre': 'Northgard',
+            'descripcion': 'Northgard es un juego de estrategia aclamado por la crítica basado en la mitología nórdica. ¡Lidera tu clan, descubre los secretos de un misterioso continente recién descubierto y derrota a tus enemigos para conquistar el trono!',
+            'precio': 24990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
-            'imagen': 'productos/000015.jpg'
+            'imagen': 'productos/northgard.jpg'
         },
         {
             'id': 16,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Age of Empires IV',
-            'descripcion': 'Age of Empires IV es un juego de estrategia en tiempo real desarrollado por Relic Entertainment y publicado por Xbox Game Studios. El juego es la cuarta entrega principal de la serie Age of Empires y fue lanzado en octubre de 2021. El juego presenta ocho civilizaciones jugables, cada una con sus propias unidades, tecnologías y edificios únicos.',
-            'precio': 59990,
+            'nombre': 'Magic: The Gathering',
+            'descripcion': 'Magic: The Gathering es el juego de cartas intercambiables original, que ahora puedes descargar y al que puedes jugar gratis con amigos desde cualquier parte. Magic: The Gathering Arena te permite descubrir estrategias, conocer a los planeswalkers, explorar el Multiverso y enfrentarte a amigos de todo el mundo.',
+            'precio': 5990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000016.jpg'
+            'imagen': 'productos/mtg.jpg'
         },
         # Categoría "RPG" (4 juegos)
         {
             'id': 17,
             'categoria': Categoria.objects.get(id=4),
-            'nombre': 'The Witcher 3: Wild Hunt',
+            'nombre': 'Hogwarts Legacy',
             'descripcion': 'The Witcher 3: Wild Hunt es un juego de rol de acción de mundo abierto desarrollado y publicado por CD Projekt Red. El juego sigue a Geralt de Rivia, un cazador de monstruos profesional conocido como brujo, mientras busca a su hija adoptiva, Ciri, quien está siendo perseguida por la Cacería Salvaje, una fuerza espectral que busca usar sus poderes para sus propios fines.',
-            'precio': 29990,
-            'descuento_subscriptor': 5,
-            'descuento_oferta': 10,
-            'imagen': 'productos/000017.jpg'
-        },
-        {
-            'id': 18,
-            'categoria': Categoria.objects.get(id=4),
-            'nombre': 'Final Fantasy VII Remake',
-            'descripcion': 'Final Fantasy VII Remake es una reimaginación del clásico juego de rol de 1997. El juego sigue a Cloud Strife, un ex-SOLDADO que se une a un grupo eco-terrorista llamado AVALANCHE para luchar contra la megacorporación Shinra, que está drenando la energía vital del planeta.',
-            'precio': 59990,
-            'descuento_subscriptor': 5,
-            'descuento_oferta': 5,
-            'imagen': 'productos/000018.jpg'
-        },
-        {
-            'id': 19,
-            'categoria': Categoria.objects.get(id=4),
-            'nombre': 'Cyberpunk 2077',
-            'descripcion': 'Cyberpunk 2077 es un juego de rol de acción de mundo abierto desarrollado y publicado por CD Projekt Red. El juego se desarrolla en Night City, una megaciudad futurista obsesionada con el poder, el glamour y la modificación corporal. Los jugadores asumen el papel de V, un mercenario que puede ser personalizado en términos de género, apariencia y trasfondo.',
             'precio': 39990,
             'descuento_subscriptor': 5,
-            'descuento_oferta': 15,
-            'imagen': 'productos/000019.jpg'
+            'descuento_oferta': 10,
+            'imagen': 'productos/hogwart.jpg'
         },
-        {
-            'id': 20,
-            'categoria': Categoria.objects.get(id=4),
-            'nombre': 'Diablo IV',
-            'descripcion': 'Diablo IV es un juego de rol de acción de mazmorras desarrollado y publicado por Blizzard Entertainment. Es la cuarta entrega principal de la serie Diablo y fue lanzado en junio de 2023. El juego se desarrolla en un mundo oscuro y gótico llamado Santuario, donde los jugadores luchan contra las fuerzas del infierno.',
-            'precio': 69990,
-            'descuento_subscriptor': 5,
-            'descuento_oferta': 0,
-            'imagen': 'productos/000020.jpg'
-        }
     ]
 
     print('Crear productos')
