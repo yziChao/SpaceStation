@@ -14,6 +14,9 @@
             {% csrf_token %}
             <ul class="form-list">
               <div class="form-group">
+                {{ form_usuario.username.label_tag }} {{ form_usuario.username|add_class:"form-control" }}
+              </div>
+              <div class="form-group">
                 {{ form_perfil.rut.label_tag }}{{ form_perfil.rut|add_class:"form-control" }}
               </div>
               <div class="form-group">

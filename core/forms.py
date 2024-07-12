@@ -54,7 +54,7 @@ class IngresarForm(Form):
 class RegistroUsuarioForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
         labels = {
             'email': 'E-mail',
         }
