@@ -233,6 +233,8 @@ def ventas(request):
 @user_passes_test(es_personal_autenticado_y_activo)
 def productos(request, accion, id):
 
+    form = None
+
     if accion == 'crear':
         if request.method == 'POST':
             form = ProductoForm(request.POST, request.FILES)
@@ -271,6 +273,8 @@ def productos(request, accion, id):
         messages.success(request, mensaje)
         if eliminado:
             return redirect('productos', 'crear', 0)
+        else:
+            return redirect('productos', 'crear', 0)
 
     context = {
         'form': form,
@@ -278,6 +282,7 @@ def productos(request, accion, id):
     }
 
     return render(request, 'core/productos.html', context)
+
 @user_passes_test(es_personal_autenticado_y_activo)
 def usuarios(request, accion, id):
 
