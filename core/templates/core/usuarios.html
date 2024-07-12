@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-  <div class="col-12 col-md-10 col-lg-8 mx-auto"> <!-- Ajustamos los tamaños de las columnas para centrar y limitar el ancho -->
+  <div class="col-12 col-md-12 col-lg-10 mx-auto"> <!-- Ajustamos los tamaños de las columnas para centrar y limitar el ancho -->
     <div class="card border-0 shadow-lg">
       <div class="card-body">
         <h2 class="card-title text-center mb-4">Mantenedor de Usuarios</h2>
@@ -41,9 +41,9 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8 mx-auto"> <!-- Ajustamos los tamaños de las columnas para centrar y limitar el ancho -->
-      <div class="card border-0 shadow-lg">
-        <div class="card-user">
+    <div class="col-12"> <!-- Se elimina el tamaño de columna limitado -->
+      <div class="card border-0 shadow-lg card-usuarios-registrados"> <!-- Se aplica la nueva clase -->
+        <div class="card-body">
           <h2 class="text-center mb-4">Usuarios Registrados</h2>
           <div class="table-responsive">
             <table id="tabla-principal" class="table table-hover text-center">
@@ -74,9 +74,9 @@
                   <td>{% if usuario.perfil.subscrito %} Sí {% else %} No {% endif %}</td>
                   <td>
                     {% if usuario.perfil.imagen %}
-                      <img src="/media/{{ usuario.perfil.imagen }}" class="usuario-sm" style="max-width: 100px;" alt="">
+                      <img src="/media/{{ usuario.perfil.imagen }}" class="usuario-sm img-fluid" style="max-width: 100px;" alt="">
                     {% else %}
-                      <img src="{% static 'core/img/sin-imagen.png' %}" class="usuario-sm" style="max-width: 100px;" alt="Sin imagen">
+                      <img src="{% static 'core/img/sin-imagen.png' %}" class="usuario-sm img-fluid" style="max-width: 100px;" alt="Sin imagen">
                     {% endif %}
                   </td>
                   <td>
@@ -96,7 +96,6 @@
   </div>
 </div>
 {% endblock content %}
-
 
 {% block script %}
 <script src="{% static 'core/js/usuarios.js' %}"></script>

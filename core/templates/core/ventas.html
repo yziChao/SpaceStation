@@ -5,56 +5,58 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12"> <!-- Ampliar la columna a col-md-12 para que el card sea más ancho -->
             <div class="card border-0 shadow-lg">
                 <div class="card-body">
                     <h2 class="text-center mb-4">Historial de Ventas</h2>
                     
-                    <table id="tabla-principal" class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th>Nro boleta</th>
-                                <th>Cliente</th>
-                                <th>Venta</th>
-                                <th>Despacho</th>
-                                <th>Entrega</th>
-                                <th>Subscrito</th>
-                                <th>Monto total</th>
-                                <th>Estado actual</th>
-                                <th>Detalle</th>
-                                <th>Cambiar estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for boleta in historial %}
-                                {% if boleta.estado == 'Anulado' %}
-                                    <tr class="letra-boleta-anulada"> 
-                                {% else %}
-                                    <tr>
-                                {% endif %}
-                                <td>{{ boleta.nro_boleta }}</td>
-                                <td>{{ boleta.nom_cliente }}</td>
-                                <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
-                                <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
-                                <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
-                                <td>{{ boleta.subscrito }}</td>
-                                <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
-                                <td>{{ boleta.estado }}</td>
-                                <td>
-                                    <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-dark">Detalle</a>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
-                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
-                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-warning">Despachar</a>
-                                        <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-primary">Entregar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="tabla-principal" class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>Nro boleta</th>
+                                    <th>Cliente</th>
+                                    <th>Venta</th>
+                                    <th>Despacho</th>
+                                    <th>Entrega</th>
+                                    <th>Subscrito</th>
+                                    <th>Monto total</th>
+                                    <th>Estado actual</th>
+                                    <th>Detalle</th>
+                                    <th>Cambiar estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for boleta in historial %}
+                                    {% if boleta.estado == 'Anulado' %}
+                                        <tr class="letra-boleta-anulada"> 
+                                    {% else %}
+                                        <tr>
+                                    {% endif %}
+                                    <td>{{ boleta.nro_boleta }}</td>
+                                    <td>{{ boleta.nom_cliente }}</td>
+                                    <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                                    <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                                    <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                                    <td>{{ boleta.subscrito }}</td>
+                                    <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
+                                    <td>{{ boleta.estado }}</td>
+                                    <td>
+                                        <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-dark">Detalle</a>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
+                                            <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
+                                            <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-warning">Despachar</a>
+                                            <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-primary">Entregar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,4 +68,3 @@
     <script src="{% static 'core/css/ventas.css' %}"></script>
     <link rel="stylesheet" href="{% static 'core/css/ventas.css' %}">
 {% endblock script %}
-    

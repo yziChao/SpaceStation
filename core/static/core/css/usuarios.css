@@ -1,14 +1,14 @@
+body {
+  background: url('/static/core/img/user.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .usuarios {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60vh;
-}
-
-body {
-  background: url('/static/core/img/user.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .card {
@@ -33,14 +33,6 @@ ul.form-list li {
 .form-row {
   display: inline-block;
   margin-right: 10px;
-}
-
-.form-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.form-row {
   margin-bottom: 15px;
 }
 
@@ -53,4 +45,37 @@ ul.form-list li {
 .error-message {
   color: red;
   font-size: 14px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-hover thead tr {
+  background-color: #f8f9fa;
+}
+
+.table-hover tbody tr:nth-of-type(even) {
+  background-color: #f2f2f2; 
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e9ecef; 
+}
+
+.usuario-sm {
+  width: 100%;
+  max-width: 100px; 
+  height: auto;
+}
+
+.card .card-body {
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Nueva clase para el card de usuarios registrados */
+.card-usuarios-registrados {
+  max-width: 1400px; /* Ajusta el ancho máximo según sea necesario */
+  width: 100%;
 }
